@@ -1,10 +1,8 @@
-import { absoluteUrl } from '../../middleware/utils';
 import UserNav from '../navigation/User';
 
 export default function Home(props) {
   const { user, origin } = props.data;
   console.log(user)
-  console.log(origin)
   return (
     <div className="container">
       <main>

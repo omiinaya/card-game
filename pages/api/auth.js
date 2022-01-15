@@ -18,14 +18,14 @@ const handler = nextConnect()
       });
     }
     /* Check user in database */
-    const user = await models.users.findOne({
+    let user = await models.users.findOne({
       where: { email: email },
       attributes: ['id', 'email', 'password'],
       limit: 1,
     });
     /* Check if exists */
     if (!user) {
-      res.status(400).json({ status: 'error', error: 'User Not Found' });
+      return res.status(400).json({ status: 'error', error: 'User Not Found' });
     }
     /* Define variables */
     const dataUser = user.toJSON();
