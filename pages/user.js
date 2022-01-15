@@ -49,18 +49,6 @@ function User(props) {
     >
       <div className="container">
         <main>
-          <h1 className="title">
-            Sequelize &amp; <a href="https://nextjs.org">Next.js!</a>
-          </h1>
-          <p className="description">
-            <img
-              src="/sequelize.svg"
-              alt="Sequelize"
-              height="120"
-              style={{ marginRight: '1rem' }}
-            />
-            <img src="/nextjs.svg" alt="Next.js" width="160" />
-          </p>
           <UserNav props={{ user: user }} />
           <h2>
             <Link

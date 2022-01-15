@@ -1,29 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 /* utils */
-import { absoluteUrl } from '../../middleware/utils';
+import { absoluteUrl } from '../middleware/utils';
 
-/* components */
-import Layout from '../../components/layout/Layout';
-import FormRegister from '../../components/form/FormRegister';
+import FormLogin from '../components/form/FormLogin';
 
 const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,2|3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-/* register schemas */
-const FORM_DATA_REGISTER = {
-  username: {
-    value: '',
-    label: 'Username',
-    min: 5,
-    max: 36,
-    required: true,
-    validator: {
-      regEx: /^[a-z\sA-Z0-9\W\w]+$/,
-      error: 'Username fill correctly',
-    },
-  },
+/* login schemas */
+const FORM_DATA_LOGIN = {
   email: {
     value: '',
     label: 'Email',
@@ -32,35 +20,32 @@ const FORM_DATA_REGISTER = {
     required: true,
     validator: {
       regEx: emailRegEx,
-      error: 'Email fill correctly',
+      error: 'Please insert valid email',
     },
   },
   password: {
     value: '',
     label: 'Password',
-    min: 5,
+    min: 6,
     max: 36,
     required: true,
     validator: {
       regEx: /^[a-z\sA-Z0-9\W\w]+$/,
-      error: 'Password fill correctly',
+      error: 'Please insert valid password',
     },
   },
 };
 
-function Register(props) {
+function Login(props) {
   const router = useRouter();
-  const { origin, baseApiUrl } = props;
+
+  const { origin, referer, baseApiUrl } = props;
   const [loading, setLoading] = useState(false);
 
-  const [stateFormData, setStateFormData] = useState(FORM_DATA_REGISTER);
+  const [stateFormData, setStateFormData] = useState(FORM_DATA_LOGIN);
   const [stateFormError, setStateFormError] = useState([]);
   const [stateFormValid, setStateFormValid] = useState(false);
   const [stateFormMessage, setStateFormMessage] = useState({});
-
-  useEffect(() => {
-    //console.log(stateFormData)
-  }, [stateFormData]);
 
   function onChangeHandler(e) {
     const { name, value } = e.currentTarget;
@@ -82,76 +67,38 @@ function Register(props) {
 
     let data = { ...stateFormData };
 
+    /* email */
+    data = { ...data, email: data.email.value || '' };
+    /* password */
+    data = { ...data, password: data.password.value || '' };
+
     /* validation handler */
     const isValid = validationHandler(stateFormData);
 
     if (isValid) {
-      /* username */
-      data = { ...data, username: data.username.value };
-      /* email */
-      data = { ...data, email: data.email.value };
-      /* password */
-      data = { ...data, password: data.password.value };
-
-      /* validation handler */
-      const isValid = validationHandler(stateFormData);
-
-      if (isValid) {
-        // Call an external API endpoint to get posts.
-        // You can use any data fetching library
-        setLoading(!loading);
-
-        const isUser = await fetch(`${baseApiUrl}/user`, {
-          method: 'GET',
-        }).then(function (response) {
-          return response.json();
-        }).then(function (res) {
-          var x = res.data.filter(user => user.email === data.email)
-          if (x.length >= 1) {
-            console.log('already exists')
-          } else {
-            const x = async function () {
-              const loginApi = await fetch(`${baseApiUrl}/user`, {
-                method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-              }).catch(error => {
-                console.error('Error:', error);
-              })
-              let result = await loginApi.json();
-              if (result.status === 'success' && result.message === 'done') {
-                window.location.href = '/';
-              } else {
-                setStateFormMessage(result);
-              }
-            }
-            x()
-          }
-        }).then(function () {
-
-        })
-        /*
-        const loginApi = await fetch(`${baseApiUrl}/user`, {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }).catch(error => {
-          console.error('Error:', error);
-        });
-        let result = await loginApi.json();
-        if (result.status === 'success' && result.message === 'done') {
-          //window.location.href = '/';
-        } else {
-          setStateFormMessage(result);
-        }*/
-        setLoading(false);
+      // Call an external API endpoint to get posts.
+      // You can use any data fetching library
+      setLoading(!loading);
+      const loginApi = await fetch(`${baseApiUrl}/auth`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+      let result = await loginApi.json();
+      if (result.success && result.token) {
+        Cookies.set('token', result.token);
+        // window.location.href = referer ? referer : "/";
+        // const pathUrl = referer ? referer.lastIndexOf("/") : "/";
+        Router.push('/');
+      } else {
+        setStateFormMessage(result);
       }
+      setLoading(false);
     }
   }
 
@@ -175,7 +122,7 @@ function Register(props) {
         states[input].min > states[input].value.length
       ) {
         errors[input] = {
-          hint: `Min ${states[input].label} length ${states[input].min}`,
+          hint: `Field ${states[input].label} min ${states[input].min}`,
           isInvalid: true,
         };
         isValid = false;
@@ -185,7 +132,7 @@ function Register(props) {
         states[input].max < states[input].value.length
       ) {
         errors[input] = {
-          hint: `Min ${states[input].label} length ${states[input].max}`,
+          hint: `Field ${states[input].label} max ${states[input].max}`,
           isInvalid: true,
         };
         isValid = false;
@@ -220,14 +167,14 @@ function Register(props) {
           }
           if (field.value && field.min >= field.value.length) {
             errors[item[0]] = {
-              hint: `Min ${field.label} length ${field.min}`,
+              hint: `Field ${field.label} min ${field.min}`,
               isInvalid: true,
             };
             isValid = false;
           }
           if (field.value && field.max <= field.value.length) {
             errors[item[0]] = {
-              hint: `Min ${field.label} length ${field.max}`,
+              hint: `Field ${field.label} max ${field.max}`,
               isInvalid: true,
             };
             isValid = false;
@@ -254,33 +201,27 @@ function Register(props) {
   }
 
   return (
-    <Layout
-      title="Next.js with Sequelize | Register page"
-      url={`${origin}${router.asPath}`}
-      origin={origin}
-    >
-      <div className="container">
-        <main className="content-detail">
-          <Link
-            href={{
-              pathname: '/user',
-            }}
-          >
-            <a>&larr; Back</a>
-          </Link>
-          <FormRegister
-            props={{
-              onSubmitHandler,
-              onChangeHandler,
-              loading,
-              stateFormData,
-              stateFormError,
-              stateFormMessage,
-            }}
-          />
-        </main>
-      </div>
-    </Layout>
+    <div className="container">
+      <main className="content-detail">
+        <Link
+          href={{
+            pathname: '/',
+          }}
+        >
+          <a>&larr; Back</a>
+        </Link>
+        <FormLogin
+          props={{
+            onSubmitHandler,
+            onChangeHandler,
+            loading,
+            stateFormData,
+            stateFormError,
+            stateFormMessage,
+          }}
+        />
+      </main>
+    </div>
   );
 }
 
@@ -295,10 +236,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       origin,
-      baseApiUrl,
       referer,
+      baseApiUrl,
     },
   };
 }
 
-export default Register;
+export default Login;

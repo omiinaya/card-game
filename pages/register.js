@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 /* utils */
-import { absoluteUrl } from '../../middleware/utils';
+import { absoluteUrl } from '../middleware/utils';
 
 /* components */
-import Layout from '../../components/layout/Layout';
-import FormLogin from '../../components/form/FormLogin';
+import Layout from '../components/layout/Layout';
+import FormRegister from '../components/form/FormRegister';
 
 const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,2|3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-/* login schemas */
-const FORM_DATA_LOGIN = {
+/* register schemas */
+const FORM_DATA_REGISTER = {
+  username: {
+    value: '',
+    label: 'Username',
+    min: 5,
+    max: 36,
+    required: true,
+    validator: {
+      regEx: /^[a-z\sA-Z0-9\W\w]+$/,
+      error: 'Username fill correctly',
+    },
+  },
   email: {
     value: '',
     label: 'Email',
@@ -22,29 +32,28 @@ const FORM_DATA_LOGIN = {
     required: true,
     validator: {
       regEx: emailRegEx,
-      error: 'Please insert valid email',
+      error: 'Email fill correctly',
     },
   },
   password: {
     value: '',
     label: 'Password',
-    min: 6,
+    min: 5,
     max: 36,
     required: true,
     validator: {
       regEx: /^[a-z\sA-Z0-9\W\w]+$/,
-      error: 'Please insert valid password',
+      error: 'Password fill correctly',
     },
   },
 };
 
-function Login(props) {
+function Register(props) {
   const router = useRouter();
-
-  const { origin, referer, baseApiUrl } = props;
+  const { origin, baseApiUrl } = props;
   const [loading, setLoading] = useState(false);
 
-  const [stateFormData, setStateFormData] = useState(FORM_DATA_LOGIN);
+  const [stateFormData, setStateFormData] = useState(FORM_DATA_REGISTER);
   const [stateFormError, setStateFormError] = useState([]);
   const [stateFormValid, setStateFormValid] = useState(false);
   const [stateFormMessage, setStateFormMessage] = useState({});
@@ -69,38 +78,48 @@ function Login(props) {
 
     let data = { ...stateFormData };
 
-    /* email */
-    data = { ...data, email: data.email.value || '' };
-    /* password */
-    data = { ...data, password: data.password.value || '' };
-
-    /* validation handler */
     const isValid = validationHandler(stateFormData);
 
     if (isValid) {
-      // Call an external API endpoint to get posts.
-      // You can use any data fetching library
-      setLoading(!loading);
-      const loginApi = await fetch(`${baseApiUrl}/auth`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).catch(error => {
-        console.error('Error:', error);
-      });
-      let result = await loginApi.json();
-      if (result.success && result.token) {
-        Cookies.set('token', result.token);
-        // window.location.href = referer ? referer : "/";
-        // const pathUrl = referer ? referer.lastIndexOf("/") : "/";
-        Router.push('/');
-      } else {
-        setStateFormMessage(result);
+      data = { ...data, username: data.username.value };
+      data = { ...data, email: data.email.value };
+      data = { ...data, password: data.password.value };
+
+      const isValid = validationHandler(stateFormData);
+
+      if (isValid) {
+        setLoading(!loading);
+
+        const isUser = await fetch(`${baseApiUrl}/user`, {
+          method: 'GET',
+        }).then(function (response) {
+          return response.json();
+        }).then(function (res) {
+          var x = res.data.filter(user => user.email === data.email)
+          if (x.length >= 1) {
+            console.log('already exists')
+          } else {
+            const x = async function () {
+              const loginApi = await fetch(`${baseApiUrl}/user`, {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              }).catch(error => {
+                console.error('Error:', error);
+              })
+              let result = await loginApi.json();
+              if (result.status === 'success' && result.message === 'done') {
+                window.location.href = '/';
+              }
+            }
+            x()
+          }
+        })
+        setLoading(false);
       }
-      setLoading(false);
     }
   }
 
@@ -124,7 +143,7 @@ function Login(props) {
         states[input].min > states[input].value.length
       ) {
         errors[input] = {
-          hint: `Field ${states[input].label} min ${states[input].min}`,
+          hint: `Min ${states[input].label} length ${states[input].min}`,
           isInvalid: true,
         };
         isValid = false;
@@ -134,7 +153,7 @@ function Login(props) {
         states[input].max < states[input].value.length
       ) {
         errors[input] = {
-          hint: `Field ${states[input].label} max ${states[input].max}`,
+          hint: `Min ${states[input].label} length ${states[input].max}`,
           isInvalid: true,
         };
         isValid = false;
@@ -169,14 +188,14 @@ function Login(props) {
           }
           if (field.value && field.min >= field.value.length) {
             errors[item[0]] = {
-              hint: `Field ${field.label} min ${field.min}`,
+              hint: `Min ${field.label} length ${field.min}`,
               isInvalid: true,
             };
             isValid = false;
           }
           if (field.value && field.max <= field.value.length) {
             errors[item[0]] = {
-              hint: `Field ${field.label} max ${field.max}`,
+              hint: `Min ${field.label} length ${field.max}`,
               isInvalid: true,
             };
             isValid = false;
@@ -204,7 +223,7 @@ function Login(props) {
 
   return (
     <Layout
-      title="Next.js with Sequelize | Login page"
+      title="Next.js with Sequelize | Register page"
       url={`${origin}${router.asPath}`}
       origin={origin}
     >
@@ -212,12 +231,12 @@ function Login(props) {
         <main className="content-detail">
           <Link
             href={{
-              pathname: '/user',
+              pathname: '/',
             }}
           >
             <a>&larr; Back</a>
           </Link>
-          <FormLogin
+          <FormRegister
             props={{
               onSubmitHandler,
               onChangeHandler,
@@ -244,10 +263,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       origin,
-      referer,
       baseApiUrl,
+      referer,
     },
   };
 }
 
-export default Login;
+export default Register;
