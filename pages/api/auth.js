@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const KEY = process.env.JWT_KEY;
 
 const handler = nextConnect()
-  .get((req, res) => {})
+  .get((req, res) => { })
   .post(async (req, res) => {
     /* Get Post Data */
     const { email, password } = req.body;
@@ -25,7 +25,10 @@ const handler = nextConnect()
     });
     /* Check if exists */
     if (!user) {
-      return res.status(400).json({ status: 'error', error: 'User Not Found' });
+      return res.status(400).json({
+        status: 'error',
+        error: 'User Not Found'
+      });
     }
     /* Define variables */
     const dataUser = user.toJSON();
@@ -58,7 +61,10 @@ const handler = nextConnect()
           },
         );
       } else {
-        res.status(400).json({ status: 'error', error: 'Password incorrect' });
+        res.status(400).json({
+          status: 'error',
+          error: 'Password incorrect'
+        });
       }
     });
   });
