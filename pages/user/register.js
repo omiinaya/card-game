@@ -101,19 +101,39 @@ function Register(props) {
         // You can use any data fetching library
         setLoading(!loading);
 
-        console.log(data)
+        const isUser = await fetch(`${baseApiUrl}/user`, {
+          method: 'GET',
+        }).then(function (response) {
+          return response.json();
+        }).then(function (res) {
+          var x = res.data.filter(user => user.email === data.email)
+          if (x.length >= 1) {
+            console.log('already exists')
+          } else {
+            const x = async function () {
+              const loginApi = await fetch(`${baseApiUrl}/user`, {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              }).catch(error => {
+                console.error('Error:', error);
+              })
+              let result = await loginApi.json();
+              if (result.status === 'success' && result.message === 'done') {
+                window.location.href = '/';
+              } else {
+                setStateFormMessage(result);
+              }
+            }
+            x()
+          }
+        }).then(function () {
 
-        const isUser = await fetch(`${baseApiUrl}/user`)
-          .then(function (response) {
-            // The response is a Response instance.
-            // You parse the data into a useable format using `.json()`
-            return response.json();
-          }).then(function (res) {
-            // `data` is the parsed version of the JSON returned from the above endpoint.
-            console.log(res);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
-          });
-
-        //need to execute this only after we know user with same email doesnt exist
+        })
+        /*
         const loginApi = await fetch(`${baseApiUrl}/user`, {
           method: 'POST',
           headers: {
@@ -129,7 +149,7 @@ function Register(props) {
           //window.location.href = '/';
         } else {
           setStateFormMessage(result);
-        }
+        }*/
         setLoading(false);
       }
     }
