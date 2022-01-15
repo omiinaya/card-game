@@ -18,19 +18,19 @@ function FormLogin({ props }) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label>
         <input
           className="form-control"
           type="text"
-          id="email"
-          name="email"
-          placeholder="Email"
+          id="username"
+          name="username"
+          placeholder="Username"
           onChange={onChangeHandler}
           readOnly={loading && true}
-          value={stateFormData.email.value}
+          value={stateFormData.username.value}
         />
-        {stateFormError.email && (
-          <span className="warning">{stateFormError.email.hint}</span>
+        {stateFormError.username && (
+          <span className="warning">{stateFormError.username.hint}</span>
         )}
       </div>
       <div className="form-group">
@@ -43,7 +43,7 @@ function FormLogin({ props }) {
           placeholder="Password"
           onChange={onChangeHandler}
           readOnly={loading && true}
-          value={stateFormData.email.password}
+          value={stateFormData.username.password}
         />
         {stateFormError.password && (
           <span className="warning">{stateFormError.password.hint}</span>

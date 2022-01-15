@@ -12,15 +12,15 @@ const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 
 /* login schemas */
 const FORM_DATA_LOGIN = {
-  email: {
+  username: {
     value: '',
-    label: 'Email',
-    min: 10,
+    label: 'Username',
+    min: 5,
     max: 36,
     required: true,
     validator: {
-      regEx: emailRegEx,
-      error: 'Please insert valid email',
+      regEx: /^[a-z\sA-Z0-9\W\w]+$/,
+      error: 'Please insert valid username',
     },
   },
   password: {
@@ -68,7 +68,7 @@ function Login(props) {
     let data = { ...stateFormData };
 
     /* email */
-    data = { ...data, email: data.email.value || '' };
+    data = { ...data, username: data.username.value || '' };
     /* password */
     data = { ...data, password: data.password.value || '' };
 

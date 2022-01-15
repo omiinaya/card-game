@@ -9,9 +9,9 @@ const handler = nextConnect()
   .get((req, res) => { })
   .post(async (req, res) => {
     /* Get Post Data */
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     /* Any how email or password is blank */
-    if (!email || !password) {
+    if (!username || !password) {
       return res.status(400).json({
         status: 'error',
         error: 'Request missing username or password',
@@ -19,10 +19,12 @@ const handler = nextConnect()
     }
     /* Check user in database */
     let user = await models.users.findOne({
-      where: { email: email },
-      attributes: ['id', 'email', 'password'],
+      where: { username: username },
+      attributes: ['id', 'email', 'username', 'password'],
       limit: 1,
     });
+
+    console.log(user)
     /* Check if exists */
     if (!user) {
       return res.status(400).json({
@@ -33,7 +35,7 @@ const handler = nextConnect()
     /* Define variables */
     const dataUser = user.toJSON();
     const userId = dataUser.id,
-      userEmail = dataUser.email,
+      userName = dataUser.username,
       userPassword = dataUser.password;
     /* Check and compare password */
     bcrypt.compare(password, userPassword).then(isMatch => {
@@ -44,7 +46,7 @@ const handler = nextConnect()
         /* Create JWT Payload */
         const payload = {
           id: userId,
-          email: userEmail,
+          username: userName,
         };
         /* Sign token */
         jwt.sign(
