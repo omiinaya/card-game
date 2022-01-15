@@ -16,7 +16,7 @@ const FORM_DATA_REGISTER = {
   username: {
     value: '',
     label: 'Username',
-    min: 5,
+    min: 3,
     max: 36,
     required: true,
     validator: {
@@ -27,7 +27,7 @@ const FORM_DATA_REGISTER = {
   email: {
     value: '',
     label: 'Email',
-    min: 10,
+    min: 5,
     max: 36,
     required: true,
     validator: {
