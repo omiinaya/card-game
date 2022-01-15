@@ -1,4 +1,4 @@
-import models from '../../db/models/index';
+import models from '../../models/index';
 import nextConnect from 'next-connect';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';

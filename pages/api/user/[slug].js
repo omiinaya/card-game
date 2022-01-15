@@ -1,5 +1,5 @@
 import nextConnect from 'next-connect';
-const models = require('../../../db/models/index');
+const models = require('../../../models/index');
 
 const handler = nextConnect()
   .get(async (req, res) => {

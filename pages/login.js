@@ -15,7 +15,7 @@ const FORM_DATA_LOGIN = {
   username: {
     value: '',
     label: 'Username',
-    min: 5,
+    min: 4,
     max: 36,
     required: true,
     validator: {
@@ -26,7 +26,7 @@ const FORM_DATA_LOGIN = {
   password: {
     value: '',
     label: 'Password',
-    min: 6,
+    min: 4,
     max: 36,
     required: true,
     validator: {
