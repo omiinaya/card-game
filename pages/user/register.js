@@ -16,7 +16,7 @@ const FORM_DATA_REGISTER = {
   username: {
     value: '',
     label: 'Username',
-    min: 10,
+    min: 5,
     max: 36,
     required: true,
     validator: {
@@ -38,7 +38,7 @@ const FORM_DATA_REGISTER = {
   password: {
     value: '',
     label: 'Password',
-    min: 6,
+    min: 5,
     max: 36,
     required: true,
     validator: {
@@ -60,7 +60,7 @@ function Register(props) {
 
   useEffect(() => {
     //console.log(stateFormData)
-}, [stateFormData]);
+  }, [stateFormData]);
 
   function onChangeHandler(e) {
     const { name, value } = e.currentTarget;
@@ -103,6 +103,17 @@ function Register(props) {
 
         console.log(data)
 
+        const isUser = await fetch(`${baseApiUrl}/user`)
+          .then(function (response) {
+            // The response is a Response instance.
+            // You parse the data into a useable format using `.json()`
+            return response.json();
+          }).then(function (res) {
+            // `data` is the parsed version of the JSON returned from the above endpoint.
+            console.log(res);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
+          });
+
+        //need to execute this only after we know user with same email doesnt exist
         const loginApi = await fetch(`${baseApiUrl}/user`, {
           method: 'POST',
           headers: {
@@ -115,7 +126,7 @@ function Register(props) {
         });
         let result = await loginApi.json();
         if (result.status === 'success' && result.message === 'done') {
-          window.location.href = '/';
+          //window.location.href = '/';
         } else {
           setStateFormMessage(result);
         }
