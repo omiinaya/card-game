@@ -21,11 +21,11 @@ const User = ({ props }) => {
         </a>
       )) || (
         <>
-          Have an Account?
+          {'Have an Account? '}
           <Link href={{ pathname: "/login" }}>
             <a>Login</a>
           </Link>
-          or
+          {' or '}
           <Link href={{ pathname: "/register" }}>
             <a>Register</a>
           </Link>

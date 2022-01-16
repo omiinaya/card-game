@@ -29,32 +29,17 @@ export default function Album() {
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <Box
+                display="flex"
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+            >
+                <Button variant="contained" color="primary">Main call to action</Button>
+                <Button variant="contained" color="primary">Secondary action</Button>
+            </Box>
             <main>
-                {/* Hero unit */}
-                <Box
-
-                    justifyContent="center"
-                    sx={{
-                        bgcolor: 'background.paper',
-                        pt: 8,
-                        pb: 6,
-                    }}
-                >
-                    <Container maxWidth="sm">
-                        <Box
-                            display="flex"
-                            sx={{ pt: 4 }}
-                            direction="row"
-                            spacing={2}
-                            justifyContent="center"
-                        >
-                            <Button variant="contained" color="primary">Main call to action</Button>
-                            <Button variant="contained" color="primary">Secondary action</Button>
-                        </Box>
-                    </Container>
-                </Box>
                 <Container sx={{ py: 8 }} maxWidth="md">
-                    {/* End hero unit */}
                     <Grid container spacing={4}>
                         {cards.map((card) => (
                             <Grid item key={card} xs={12} sm={6} md={4}>
@@ -72,11 +57,10 @@ export default function Album() {
                                     />
                                     <CardContent sx={{ flexGrow: 1 }}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Heading
+                                            Card Name
                                         </Typography>
                                         <Typography>
-                                            This is a media card. You can use this section to describe the
-                                            content.
+                                            This is a card card description.
                                         </Typography>
                                     </CardContent>
                                     <CardActions>

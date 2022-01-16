@@ -2,9 +2,13 @@ import { absoluteUrl } from '../middleware/utils';
 import UserNav from '../components/navigation/User';
 import Home from '../components/home/Home';
 
+
 export default function App(props) {
+  
   return (
-    <Home data={props}/>
+    <div>
+      <Home data={props}/>
+    </div>
   );
 }
 /* getServerSideProps */
