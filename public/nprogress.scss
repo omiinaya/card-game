@@ -1,5 +1,3 @@
-$startop: -320px;
-
 #cardTemplate {
   position: absolute;
 }
@@ -18,99 +16,21 @@ $startop: -320px;
   position: relative;
   left: 40px;
   top: -315px;
+  max-width: 200px;
 }
 
 /* star levels */
 #starLevel {
   position: relative;
   width: 22px;
-  left: 330px;
-  top: $startop;
+  right: 30px;
+  top: -225px;
 }
-
-#starLevel2 {
-  position: relative;
-  width: 22px;
-  left: 280px;
-  top: $startop;
-}
-#starLevel3 {
-  position: relative;
-  width: 22px;
-  left: 230px;
-  top: $startop;
-}
-#starLevel4 {
-  position: relative;
-  width: 22px;
-  left: 180px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel5 {
-  position: relative;
-  width: 22px;
-  left: 130px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel6 {
-  position: relative;
-  width: 22px;
-  left: 80px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel7 {
-  position: relative;
-  width: 22px;
-  left: 30px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel8 {
-  position: relative;
-  width: 22px;
-  left: -20px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel9 {
-  position: relative;
-  width: 22px;
-  left: -70px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel10 {
-  position: relative;
-  width: 22px;
-  left: -120px;
-  top: $startop;
-  visibility: hidden;
-}
-#starLevel11 {
-  position: relative;
-  width: 22px;
-  left: -170px;
-  top: $startop;
-  visibility: hidden;
-
-}
-#starLevel12 {
-  position: relative;
-  width: 22px;
-  left: -220px;
-  top: $startop;
-  visibility: hidden;
-}
-
-/* end of star levels */
 
 #cardType {
   position: relative;
   width: 25px;
-  left: 77px;
+  left: 343px;
   top: -356px;
 }
 
@@ -145,4 +65,8 @@ $startop: -320px;
   font-size: 14px;
   max-width: 1px;
   font-weight: bold;
+}
+
+#cardContainer {
+  max-width: 400px;
 }
