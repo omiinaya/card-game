@@ -23,6 +23,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "^6.2.1",
+    "sass": "^1.48.0",
     "sequelize": "^5.21.11",
     "sqlite3": "^5.0.0"
   },

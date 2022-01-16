@@ -1,3 +1,5 @@
+import Card from '../card/card'
+
 export default function Home(props) {
   const { user, origin } = props.data;
   console.log(user)
@@ -7,6 +9,7 @@ export default function Home(props) {
         <h1 className="title">
           Hello world!
         </h1>
+        <Card />
         {user && <div>{'User ID: '}{user.id}</div>}
       </main>
     </div>

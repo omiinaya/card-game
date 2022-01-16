@@ -95,7 +95,7 @@ function Register(props) {
         }).then(function (response) {
           return response.json();
         }).then(function (res) {
-          var x = res.data.filter(user => user.email === data.email)
+          var x = res.data.filter(user => user.username === data.username)
           if (x.length >= 1) {
             console.log('already exists')
           } else {
