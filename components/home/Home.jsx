@@ -1,4 +1,5 @@
 import UserNav from '../navigation/User';
+import CardManager from '../cardManager/CardManager';
 
 export default function Home(props) {
   const { user, origin } = props.data;
@@ -11,6 +12,7 @@ export default function Home(props) {
         </h1>
         <UserNav props={{ user: user }} />
         {user && <div>{'User ID: '}{user.id}</div>}
+        <CardManager />
       </main>
     </div>
   );
