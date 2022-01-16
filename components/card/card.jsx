@@ -1,4 +1,14 @@
 export default function Card(props) {
+const card = { 
+    cardName: 'Baby Dragon', 
+    cardImage: 'https://i.ibb.co/wr9CV2B/img.jpg',
+    cardMonster: '[Dragon]',
+    cardDesc: 'Much more than just a child, this dragon is gifted with untapped power.',
+    cardAtk: 1200,
+    cardDef: 700,
+    typeImage: 'https://i.ibb.co/nPXKRzG/wind.png'
+
+}
   return (
     <div>
       <link
@@ -11,8 +21,8 @@ export default function Card(props) {
           id="cardTemplate"
           src="https://i.ibb.co/mG6jvpR/monster-normal.png"
         />
-        <img id="cardFace" src="https://i.ibb.co/wr9CV2B/img.jpg" />
-        <h1 id="cardTitle">Baby Dragon</h1>
+        <img id="cardFace" src={card.cardImage} />
+        <h1 id="cardTitle">{card.cardName}</h1>
         <img id="starLevel" src="https://i.ibb.co/M1bYC6V/star.png" />
         <img id="starLevel2" src="https://i.ibb.co/M1bYC6V/star.png" />
         <img id="starLevel3" src="https://i.ibb.co/M1bYC6V/star.png" />
@@ -25,14 +35,13 @@ export default function Card(props) {
         <img id="starLevel10" src="https://i.ibb.co/M1bYC6V/star.png" />
         <img id="starLevel11" src="https://i.ibb.co/M1bYC6V/star.png" />
         <img id="starLevel12" src="https://i.ibb.co/M1bYC6V/star.png" />
-        <img id="cardType" src="https://i.ibb.co/nPXKRzG/wind.png" />
-        <h4 id="monsterType">[Dragon]</h4>
+        <img id="cardType" src={card.typeImage} />
+        <h4 id="monsterType">{card.cardMonster}</h4>
         <div id="monsterDescription">
-          Much more than just a child, this dragon is gifted with untapped
-          power.
+            {card.cardDesc}
         </div>
-        <div id="monsterAtk">1200</div>
-        <div id="monsterDef">700</div>
+        <div id="monsterAtk">{card.cardAtk}</div>
+        <div id="monsterDef">{card.cardDef}</div>
       </div>
     </div>
   );
