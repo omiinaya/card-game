@@ -1,27 +1,21 @@
 import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const theme = createTheme();
-
 export default function Album() {
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <Box>
             <AppBar position="relative">
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap>
@@ -29,16 +23,27 @@ export default function Album() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Box
-                display="flex"
-                direction="row"
-                spacing={2}
-                justifyContent="center"
-            >
-                <Button variant="contained" color="primary">Main call to action</Button>
-                <Button variant="contained" color="primary">Secondary action</Button>
-            </Box>
-            <main>
+            <Box>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    margin: 10
+                }}>
+                    <Box>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                        >
+                            Main call to action
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                        >
+                            Secondary action
+                        </Button>
+                    </Box>
+                </div>
                 <Container sx={{ py: 8 }} maxWidth="md">
                     <Grid container spacing={4}>
                         {cards.map((card) => (
@@ -72,7 +77,7 @@ export default function Album() {
                         ))}
                     </Grid>
                 </Container>
-            </main>
-        </ThemeProvider>
+            </Box>
+        </Box>
     );
 }
