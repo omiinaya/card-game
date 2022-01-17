@@ -10,10 +10,24 @@ import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { useEffect } from 'react';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+async function test(props) {
+    const cardApi = await fetch(`localhost:3000/api/card`, {
+        method: 'GET',
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+    let result = await cardApi
+   console.log(result)
+}
+
 export default function Album() {
+    useEffect(() => {
+        test()
+    });
     return (
         <Box>
             <AppBar position="relative">

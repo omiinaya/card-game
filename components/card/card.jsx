@@ -22,9 +22,15 @@ export default function Card(props) {
           id="cardTemplate"
           src="https://i.ibb.co/mG6jvpR/monster-normal.png"
         />
-        <img id="cardFace" src={card.cardImage} />
-        {card.cardRarity.map((card) => (
-          <img id="starLevel" key={card} src="https://i.ibb.co/M1bYC6V/star.png" />
+        <img
+          id="cardFace"
+          src={card.cardImage} />
+        {card.cardRarity.map((star, index) => (
+          <img
+            id="starLevel"
+            key={star}
+            src="https://i.ibb.co/M1bYC6V/star.png"
+          />
         ))}
         <h1 id="cardTitle">{card.cardName}</h1>
         <img id="cardType" src={card.typeImage} />
