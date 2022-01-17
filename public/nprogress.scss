@@ -88,7 +88,7 @@
 
 body {
   //background: radial-gradient(#333, #111);
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .cards {
@@ -102,7 +102,7 @@ body {
   right: 0;
 }
 
-.card {
+.card-container {
   height: 150px;
   margin: 0 -25px;
   position: relative;
@@ -120,7 +120,7 @@ body {
   }
 }
 
-.card-face {
+.card-container-face {
   bottom: 0;
   content: "";
   left: 0;
@@ -142,14 +142,6 @@ body {
   }
 }
 
-.card-label {
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: -0.025em;
-  padding: 15px 0 0 15px;
-}
-
 $total: 10;
 @for $i from 0 through ($total - 1) {
   $hue: ($i / $total) * -360;
@@ -157,15 +149,15 @@ $total: 10;
   $rotation: ($i - ($total - 1) / 2) / ($total - 2) * $rotationRange;
   $offsetRange: 80;
   $offset: abs(($i - ($total - 1) / 2) / ($total - 2) * $offsetRange);
-  .card:nth-child(#{$i + 1}) {
-    .card-face {
+  .card-container:nth-child(#{$i + 1}) {
+    .card-container-face {
       background: white;
       box-shadow: -5px 5px 5px hsla(0, 0%, 0%, 0.15),
         inset 0 0 0 2px hsla(0, 0%, 0%, 0.75);
       transform: translateY($offset * 1px) rotate($rotation * 1deg);
     }
     &:hover {
-      .card-face {
+      .card-container-face {
         box-shadow: 0 10px 20px hsla(0, 0%, 0%, 0.4),
           inset 0 0 0 2px hsla(0, 0%, 0%, 0.75);
         transform: translateY(-100px) rotate(0deg) scale(2);

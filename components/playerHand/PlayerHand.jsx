@@ -20,11 +20,11 @@ export default function PlayerHand(props) {
   }, [cards]);
 
   return (
-    <div class="cards">
+    <div className="cards">
       {cards.map((card, index) => (
-        <div class="card">
-          <div class="card-face">
-            <div class="generated-card">
+        <div className="card-container" key={card+index}>
+          <div className="card-container-face">
+            <div className="generated-card">
               <MonsterCard
                 cardName={cards[index].cardName}
                 cardImage={cards[index].cardImage}
