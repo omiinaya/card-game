@@ -8,8 +8,7 @@ export default function Home(props) {
       <main>
         <h1 className="title">Hello world!</h1>
         <div style={{ display: 'flex', justifyContent: 'center'}}>
-          <Card />
-          <Card />
+          XD
         </div>
         {user && (
           <div>

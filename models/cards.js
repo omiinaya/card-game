@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
             cardDesc: DataTypes.TEXT,
             cardType: DataTypes.STRING,
             cardATK: DataTypes.INTEGER,
-            cardDEF: DataTypes.INTEGER
+            cardDEF: DataTypes.INTEGER,
+            typeImage: DataTypes.STRING
         }
     );
     return cards;
