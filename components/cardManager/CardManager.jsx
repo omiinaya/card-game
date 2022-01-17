@@ -54,21 +54,21 @@ export default function Album() {
                                 console.log(cards)
                             }}
                         >
-                            Main call to action
+                            action #1
                         </Button>
                         <Button
                             variant="contained"
                             color="primary"
                         >
-                            Secondary action
+                            action #2
                         </Button>
                     </Box>
                 </div>
                 <Container sx={{ py: 8 }} maxWidth="md">
-                    <Grid container spacing={4}>
+                    <Grid container spacing={4} display='flex' justifyContent='center'>
 
                         {cards.map((card, index) => (
-                            <Grid item key={index} xs={12} sm={6} md={4}>
+                            <Grid item key={index} xs={12} sm={5} md={4}>
                                 <Card
                                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                                 >
