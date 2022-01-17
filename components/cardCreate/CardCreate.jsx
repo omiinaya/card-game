@@ -26,14 +26,11 @@ export default function BasicSelect() {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="card-rarity">Card Rarity: </InputLabel>
+        <InputLabel>Card Rarity:</InputLabel>
         <Select
-          labelId="card-rarity"
-          id="cardRarity"
-          name="cardRarity"
+          size="small"
           value={rarity}
-          label="Card Rarity"
-          variant="standard"
+          label="Service"
           onChange={handleChangeRarity}
         >
           <MenuItem value={"Common"}>Common</MenuItem>
@@ -47,10 +44,12 @@ export default function BasicSelect() {
         <TextField
           id="cardName"
           name="cardName"
-          label="Card Name: "
-          labelId="card-name"
+          label="Card Name:"
+          size="small"
           defaultValue={name}
           onChange={handleChangeName}
+          InputLabelProps={{ shrink: true }}
+          variant="standard"
         />
       </FormControl>
     </Box>

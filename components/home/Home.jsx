@@ -1,4 +1,5 @@
 import CardCreate from '../cardCreate/CardCreate'
+import PlayerHand from '../playerHand/PlayerHand'
 
 export default function Home(props) {
   const { user, origin } = props.data;
@@ -8,6 +9,7 @@ export default function Home(props) {
       <main>
         <h1 className="title">Hello world!</h1>
         <CardCreate />
+        <PlayerHand />
         {user && (
           <div>
             {"User ID: "}
