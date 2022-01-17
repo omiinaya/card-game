@@ -182,6 +182,12 @@ $total: 10;
   }
 }
 
+.generated-card {
+  transform: scale(0.37);
+  margin-top: -125px;
+  margin-left: -50px
+}
+
 @keyframes fade {
   0% {
     opacity: 0.9;

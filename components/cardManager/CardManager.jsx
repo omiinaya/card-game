@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
