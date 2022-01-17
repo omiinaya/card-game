@@ -2,15 +2,14 @@ import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useEffect, useState } from 'react';
-import Card from '../card/card'
+import Card from '@material-ui/core/Card';
+import MonsterCard from '../monsterCard/MonsterCard'
 import axios from 'axios'
 
 
@@ -67,22 +66,30 @@ export default function Album() {
                 </div>
                 <Container sx={{ py: 8 }} maxWidth="md">
                     <Grid container spacing={4}>
-                        
+
                         {cards.map((card, index) => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
-                                <Card 
-                                    cardName={cards[index].cardName}
-                                    cardImage={cards[index].cardImage}
-                                    cardRarity={cards[index].cardRarity}
-                                    cardMonster={cards[index].cardMonster}
-                                    cardDesc={cards[index].cardDesc}
-                                    cardAtk={cards[index].cardATK}
-                                    cardDef={cards[index].cardDEF}
-                                    typeImage={cards[index].typeImage}
-                                />
+                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                <Card
+                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                                >
+                                    <MonsterCard
+                                        cardName={cards[index].cardName}
+                                        cardImage={cards[index].cardImage}
+                                        cardRarity={cards[index].cardRarity}
+                                        cardMonster={cards[index].cardMonster}
+                                        cardDesc={cards[index].cardDesc}
+                                        cardAtk={cards[index].cardATK}
+                                        cardDef={cards[index].cardDEF}
+                                        typeImage={cards[index].typeImage}
+                                    />
+                                    <CardActions>
+                                        <Button size="small">Edit</Button>
+                                        <Button size="small">Remove</Button>
+                                    </CardActions>
+                                </Card>
                             </Grid>
                         ))}
-                        
+
                     </Grid>
                 </Container>
             </Box>

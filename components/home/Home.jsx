@@ -1,5 +1,3 @@
-import Card from "../card/card";
-
 export default function Home(props) {
   const { user, origin } = props.data;
   console.log(user);

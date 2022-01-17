@@ -1,72 +1,68 @@
+#cardContainer {
+  max-width: 400px;
+  height: 400px;
+  z-index: 2;
+  display: flex;
+}
+
 #cardTemplate {
-  position: absolute;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
 }
 
 #cardFace {
   position: relative;
-  z-index: -1;
-  width: 320px;
-  top: 100px;
-  left: 40px;
+  top: 65px;
+  bottom: 0;
+ left: -250px;
+  height: 220px;
+  z-Index: 1;
 }
 
 #cardTitle {
-  font-family: 'Didact Gothic', sans-serif;
+  position: absolute;
+  font-family: "Didact Gothic", sans-serif;
   font-size: 25px;
-  position: relative;
-  left: 40px;
-  top: -315px;
-  max-width: 200px;
+  margin-left: 20px;
+  margin-top: 15px;
+  width: 210px;
+  height: 30px;
+  z-index: 2;
 }
 
 /* star levels */
 #starLevel {
-  position: relative;
-  width: 22px;
-  right: 30px;
-  top: -225px;
+  position: absolute;
+  z-index: 2;
+  margin-left: 230px;
+  margin-top: 50px;
+  height: 15px;
+  width: 15px;
 }
 
 #cardType {
-  position: relative;
-  width: 25px;
-  left: 343px;
-  top: -356px;
+  position: absolute;
+  z-index: 2;
+  margin-left: 235px;
+  margin-top: 22px;
+  height: 20px;
+  width: 20px;
 }
 
 #monsterType {
-  position: relative;
-  left: 35px;
-  top: 0px;
+  display: none
 }
 
 #monsterDescription {
-  position: relative;
-  left: 35px;
-  top: -15px;
-  font-size: 12px;
-  max-width: 335px;
-  font-style: italic;
+  display: none
 }
 
 #monsterAtk {
-  position: relative;
-  left: 255px;
-  top: 22px;
-  font-size: 14px;
-  max-width: 1px;
-  font-weight: bold;
+  display: none
 }
 
 #monsterDef {
-  position: relative;
-  left: 335px;
-  top: 5px;
-  font-size: 14px;
-  max-width: 1px;
-  font-weight: bold;
-}
-
-#cardContainer {
-  max-width: 400px;
+  display: none
 }

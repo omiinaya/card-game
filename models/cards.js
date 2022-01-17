@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
             cardType: DataTypes.STRING,
             cardATK: DataTypes.INTEGER,
             cardDEF: DataTypes.INTEGER,
-            typeImage: DataTypes.STRING
+            typeImage: DataTypes.STRING,
+            cardMonster: DataTypes.STRING
         }
     );
     return cards;
