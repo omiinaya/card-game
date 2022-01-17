@@ -52,11 +52,18 @@
 }
 
 #monsterType {
-  display: none
+  position: absolute;
+  z-index: 2;
+  margin-left: 23px;
+  margin-top: 303px;
 }
 
 #monsterDescription {
-  display: none
+  position: absolute;
+  z-index: 2;
+  margin-left: 23px;
+  margin-top: 323px;
+  width: 235px;
 }
 
 #monsterAtk {
