@@ -12,7 +12,6 @@ const handler = nextConnect()
 
     const cards = await models.cards.findAndCountAll({
       offset: nextPage ? +nextPage : 0,
-      limit: 5,
     });
 
     res.statusCode = 200;
