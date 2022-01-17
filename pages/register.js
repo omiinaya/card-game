@@ -222,33 +222,27 @@ function Register(props) {
   }
 
   return (
-    <Layout
-      title="Next.js with Sequelize | Register page"
-      url={`${origin}${router.asPath}`}
-      origin={origin}
-    >
-      <div className="container">
-        <main className="content-detail">
-          <Link
-            href={{
-              pathname: '/',
-            }}
-          >
-            <a>&larr; Back</a>
-          </Link>
-          <FormRegister
-            props={{
-              onSubmitHandler,
-              onChangeHandler,
-              loading,
-              stateFormData,
-              stateFormError,
-              stateFormMessage,
-            }}
-          />
-        </main>
-      </div>
-    </Layout>
+    <div className="container">
+      <main className="content-detail">
+        <Link
+          href={{
+            pathname: '/',
+          }}
+        >
+          <a>&larr; Back</a>
+        </Link>
+        <FormRegister
+          props={{
+            onSubmitHandler,
+            onChangeHandler,
+            loading,
+            stateFormData,
+            stateFormError,
+            stateFormMessage,
+          }}
+        />
+      </main>
+    </div>
   );
 }
 

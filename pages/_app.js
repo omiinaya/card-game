@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { getAppCookies, verifyToken } from '../middleware/utils';
 import NProgress from 'nprogress';
 import UserNav from '../components/navigation/User';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import "../public/nprogress.scss";
 
 NProgress.configure({ showSpinner: false });
@@ -13,9 +14,10 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
-  const { user, origin } =  pageProps;
+  const { user, origin } = pageProps;
   return (
     <>
+      <CssBaseline />
       <UserNav props={{ user: user }} />
       <Component {...pageProps} />
     </>

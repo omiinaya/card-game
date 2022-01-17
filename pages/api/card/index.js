@@ -1,5 +1,4 @@
 import nextConnect from 'next-connect';
-import middleware from '../../../middleware/auth';
 const models = require('../../../models/index');
 
 const handler = nextConnect()
@@ -23,6 +22,39 @@ const handler = nextConnect()
       total: cards.count,
       nextPage: +nextPage + 5,
     });
-  });
+  })
+
+  // Post method
+  .post(async (req, res) => {
+    const { body } = req;
+    const {
+      cardName,
+      cardRarity,
+      cardImage,
+      cardDesc,
+      cardType,
+      cardATK,
+      cardDEF,
+      cardMonster,
+      typeImage
+    } = body;
+    const newCard = await models.cards.create({
+      cardName,
+      cardRarity,
+      cardImage,
+      cardDesc,
+      cardType,
+      cardATK,
+      cardDEF,
+      cardMonster,
+      typeImage,
+      status: 1,
+    });
+    return res.status(200).json({
+      status: 'success',
+      message: 'done',
+      data: newCard,
+    });
+  })
 
 export default handler;

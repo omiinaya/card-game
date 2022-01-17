@@ -1,3 +1,5 @@
+import CardCreate from '../cardCreate/CardCreate'
+
 export default function Home(props) {
   const { user, origin } = props.data;
   console.log(user);
@@ -5,9 +7,7 @@ export default function Home(props) {
     <div className="container">
       <main>
         <h1 className="title">Hello world!</h1>
-        <div style={{ display: 'flex', justifyContent: 'center'}}>
-          XD
-        </div>
+        <CardCreate />
         {user && (
           <div>
             {"User ID: "}
