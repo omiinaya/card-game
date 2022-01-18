@@ -10,6 +10,7 @@ import axios from 'axios'
 export default function BasicSelect() {
   const [name, setName] = useState("");
   const [rarities, setRarities] = useState([]);
+  const [types, setTypes] = useState([]);
   const [rarity, setRarity] = useState("Common");
   const [image, setImage] = useState("")
   const [desc, setDesc] = useState("")
@@ -24,15 +25,28 @@ export default function BasicSelect() {
       })
   }
 
+  const getTypes = () => {
+    axios.get(`/api/cardType`)
+      .then(res => {
+        setTypes(res.data.data)
+      })
+  }
+
   useEffect(() => {
     getRarities()
+    getTypes()
   }, []);
 
   useEffect(() => {
-    console.log(rarity)
-    console.log(name)
+    console.log("Rarity: " + rarity)
+    console.log("Name: " + name)
+    console.log("Image: " + image)
+  }, [rarity, name, image]);
+
+  useEffect(() => {
     console.log(rarities)
-  }, [rarity, name, rarities]);
+    console.log(types)
+  }, [rarities, types]);
 
   const handleChangeName = (event) => {
     setName(event.target.value);
@@ -42,13 +56,16 @@ export default function BasicSelect() {
     setRarity(event.target.value);
   };
 
+  const handleChangeImage = (event) => {
+    setImage(event.target.value);
+  };
+
   return (
     rarities.length > 0 && (
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
+      <form style={{ display: 'flex' }}>
+        <FormControl>
           <InputLabel>Card Rarity:</InputLabel>
           <Select
-            size="small"
             value={rarity}
             label="Service"
             onChange={handleChangeRarity}
@@ -58,19 +75,26 @@ export default function BasicSelect() {
             ))}
           </Select>
         </FormControl>
-        <FormControl fullWidth>
-          <TextField
-            id="cardName"
-            name="cardName"
-            label="Card Name:"
-            size="small"
-            defaultValue={name}
-            onChange={handleChangeName}
-            InputLabelProps={{ shrink: true }}
-            variant="standard"
-          />
-        </FormControl>
-      </Box>
+        <TextField
+          id="cardName"
+          name="cardName"
+          label="Card Name:"
+
+          defaultValue={name}
+          onChange={handleChangeName}
+          InputLabelProps={{ shrink: true }}
+          variant="standard"
+        />
+        <TextField
+          id="cardImage"
+          name="cardImage"
+          label="Image Link:"
+          defaultValue={image}
+          onChange={handleChangeImage}
+          InputLabelProps={{ shrink: true }}
+          variant="standard"
+        />
+      </form>
     )
   )
 }
