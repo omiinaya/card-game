@@ -7,9 +7,9 @@ const handler = nextConnect()
   .use(middleware)
   // Get method
   .get(async (req, res) => {
-    const cardRarity = await models.cardRarity.findAll();
+    const cardRarities = await models.cardRarities.findOne();
     res.statusCode = 200;
-    return res.json({ status: 'success', data: cardRarity });
+    return res.json({ status: 'success', data: cardRarities });
   })
   // Post method
   .post(async (req, res) => {
@@ -17,14 +17,14 @@ const handler = nextConnect()
     const {
       typeName,
     } = body;
-    const newCardRarity = await models.cardRarity.create({
+    const newCardType = await models.cardRarities.create({
       typeName,
       status: 1
     });
     return res.status(200).json({
       status: 'success',
       message: 'done',
-      data: newCardRarity,
+      data: newCardType,
     });
   })
   // Put method

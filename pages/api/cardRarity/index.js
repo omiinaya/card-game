@@ -10,15 +10,15 @@ const handler = nextConnect()
       body,
     } = req;
 
-    const cardTypes = await models.cardTypes.findAndCountAll({
+    const cardRarity = await models.cardRarities.findAndCountAll({
       offset: nextPage ? +nextPage : 0,
     });
 
     res.statusCode = 200;
     res.json({
       status: 'success',
-      data: cardTypes.rows,
-      total: cardTypes.count,
+      data: cardRarity.rows,
+      total: cardRarity.count,
       nextPage: +nextPage + 5,
     });
   })
@@ -29,7 +29,7 @@ const handler = nextConnect()
     const {
       typeName,
     } = body;
-    const newCard = await models.cards.create({
+    const newCard = await models.cardRarities.create({
       typeName,
       status: 1,
     });

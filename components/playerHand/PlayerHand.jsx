@@ -16,7 +16,7 @@ export default function PlayerHand(props) {
   }, []);
 
   useEffect(() => {
-    console.log(cards);
+    //console.log(cards);
   }, [cards]);
 
   return (

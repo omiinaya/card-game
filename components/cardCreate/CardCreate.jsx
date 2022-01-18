@@ -5,9 +5,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+import axios from 'axios'
 
 export default function BasicSelect() {
   const [name, setName] = useState("");
+  const [rarities, setRarities] = useState([]);
   const [rarity, setRarity] = useState("Common");
   const [image, setImage] = useState("")
   const [desc, setDesc] = useState("")
@@ -15,10 +17,23 @@ export default function BasicSelect() {
   const [atk, setAtk] = useState(0)
   const [def, setDef] = useState(0)
 
+  const getRarities = () => {
+    axios.get(`/api/cardRarity`)
+      .then(res => {
+        setRarities(res.data.data)
+      })
+  }
+
   useEffect(() => {
-    console.log(rarity);
-    console.log(name);
-  }, [rarity, name]);
+    getRarities()
+  }, []);
+
+  useEffect(() => {
+    console.log(rarity)
+    console.log(name)
+    console.log(rarities)
+    console.log(rarities[0])
+  }, [rarity, name, rarities]);
 
   const handleChangeName = (event) => {
     setName(event.target.value);
@@ -30,20 +45,25 @@ export default function BasicSelect() {
 
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel>Card Rarity:</InputLabel>
-        <Select
-          size="small"
-          value={rarity}
-          label="Service"
-          onChange={handleChangeRarity}
-        >
-          <MenuItem value={"Common"}>Common</MenuItem>
-          <MenuItem value={"Rare"}>Rare</MenuItem>
-          <MenuItem value={"Unique"}>Exotic</MenuItem>
-          <MenuItem value={"Legendry"}>Legendary</MenuItem>
-        </Select>
-      </FormControl>
+
+      {rarities.length > 0 ? (
+        <FormControl fullWidth>
+          <InputLabel>Card Rarity:</InputLabel>
+          <Select
+            size="small"
+            value={rarity}
+            label="Service"
+            onChange={handleChangeRarity}
+          >
+            {rarities.map((x) => (
+              <MenuItem value={x.rarityName}>{x.rarityName}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      ) : (
+        <div>test2</div>
+      )}
+
       <FormControl fullWidth>
         <TextField
           id="cardName"
