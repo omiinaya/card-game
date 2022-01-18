@@ -32,7 +32,6 @@ export default function BasicSelect() {
     console.log(rarity)
     console.log(name)
     console.log(rarities)
-    console.log(rarities[0])
   }, [rarity, name, rarities]);
 
   const handleChangeName = (event) => {
@@ -44,9 +43,8 @@ export default function BasicSelect() {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-
-      {rarities.length > 0 ? (
+    rarities.length > 0 && (
+      <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel>Card Rarity:</InputLabel>
           <Select
@@ -56,26 +54,23 @@ export default function BasicSelect() {
             onChange={handleChangeRarity}
           >
             {rarities.map((x) => (
-              <MenuItem value={x.rarityName}>{x.rarityName}</MenuItem>
+              <MenuItem key={x.rarityName} value={x.rarityName}>{x.rarityName}</MenuItem>
             ))}
           </Select>
         </FormControl>
-      ) : (
-        <div>test2</div>
-      )}
-
-      <FormControl fullWidth>
-        <TextField
-          id="cardName"
-          name="cardName"
-          label="Card Name:"
-          size="small"
-          defaultValue={name}
-          onChange={handleChangeName}
-          InputLabelProps={{ shrink: true }}
-          variant="standard"
-        />
-      </FormControl>
-    </Box>
-  );
+        <FormControl fullWidth>
+          <TextField
+            id="cardName"
+            name="cardName"
+            label="Card Name:"
+            size="small"
+            defaultValue={name}
+            onChange={handleChangeName}
+            InputLabelProps={{ shrink: true }}
+            variant="standard"
+          />
+        </FormControl>
+      </Box>
+    )
+  )
 }
