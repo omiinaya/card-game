@@ -7,18 +7,9 @@ const handler = nextConnect()
   .use(middleware)
   // Get method
   .get(async (req, res) => {
-    const { slug } = req.query;
-    const cardTypes = await models.cardTypes.findOne({
-      where: {
-        slug: slug,
-      },
-      order: [
-        // Will escape title and validate DESC against a list of valid direction parameters
-        ['createdAt', 'ASC'],
-      ],
-    });
+    const cardRarity = await models.cardRarity.findAll();
     res.statusCode = 200;
-    return res.json({ status: 'success', data: cardTypes });
+    return res.json({ status: 'success', data: cardRarity });
   })
   // Post method
   .post(async (req, res) => {
@@ -26,14 +17,14 @@ const handler = nextConnect()
     const {
       typeName,
     } = body;
-    const newCardType = await models.cardTypes.create({
+    const newCardRarity = await models.cardRarity.create({
       typeName,
       status: 1
     });
     return res.status(200).json({
       status: 'success',
       message: 'done',
-      data: newCardType,
+      data: newCardRarity,
     });
   })
   // Put method

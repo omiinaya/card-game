@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-    const cardTypes = sequelize.define(
-        'cardTypes',
+    const cardRarity = sequelize.define(
+        'cardRarity',
         {
-            typeName: DataTypes.STRING,
+            rarityName: DataTypes.STRING,
         },
         {
             timestamps: false
         }
     );
-    return cardTypes;
+    return cardRarity;
 };

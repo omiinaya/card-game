@@ -7,16 +7,7 @@ const handler = nextConnect()
   .use(middleware)
   // Get method
   .get(async (req, res) => {
-    const { slug } = req.query;
-    const cardTypes = await models.cardTypes.findOne({
-      where: {
-        slug: slug,
-      },
-      order: [
-        // Will escape title and validate DESC against a list of valid direction parameters
-        ['createdAt', 'ASC'],
-      ],
-    });
+    const cardTypes = await models.cardTypes.findOne();
     res.statusCode = 200;
     return res.json({ status: 'success', data: cardTypes });
   })
