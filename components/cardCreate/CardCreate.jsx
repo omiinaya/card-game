@@ -9,6 +9,11 @@ import TextField from "@material-ui/core/TextField";
 export default function BasicSelect() {
   const [name, setName] = useState("");
   const [rarity, setRarity] = useState("Common");
+  const [image, setImage] = useState("")
+  const [desc, setDesc] = useState("")
+  const [type, setType] = useState("")
+  const [atk, setAtk] = useState(0)
+  const [def, setDef] = useState(0)
 
   useEffect(() => {
     console.log(rarity);
@@ -35,8 +40,7 @@ export default function BasicSelect() {
         >
           <MenuItem value={"Common"}>Common</MenuItem>
           <MenuItem value={"Rare"}>Rare</MenuItem>
-          <MenuItem value={"Special"}>Special</MenuItem>
-          <MenuItem value={"Unique"}>Unique</MenuItem>
+          <MenuItem value={"Unique"}>Exotic</MenuItem>
           <MenuItem value={"Legendry"}>Legendary</MenuItem>
         </Select>
       </FormControl>
