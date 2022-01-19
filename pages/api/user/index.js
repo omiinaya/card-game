@@ -13,39 +13,21 @@ const handler = nextConnect()
       body,
     } = req;
 
-    const users = await models.users.findAndCountAll({
-      include: [
-        {
-          model: models.posts,
-          as: 'posts',
-        },
-        {
-          model: models.jobs,
-          as: 'jobs',
-        },
-      ],
-      order: [
-        // Will escape title and validate DESC against a list of valid direction parameters
-        ['id', 'DESC'],
-      ],
-      offset: nextPage ? +nextPage : 0,
-      limit: 5,
-    });
+    const users = await models.users.findAndCountAll();
 
     res.statusCode = 200;
     res.json({
       status: 'success',
       data: users.rows,
       total: users.count,
-      nextPage: +nextPage + 5,
     });
   })
   // Post method
   .post(async (req, res) => {
     const { body } = req;
-    const { slug } = req.query;
+
     const { username, email, password } = body;
-    const userId = slug;
+
     const newUser = await models.users.create({
       username,
       email,
