@@ -59,6 +59,10 @@ export default function BasicSelect() {
     setImage(event.target.value);
   };
 
+  const handleChangeDesc = (event) => {
+    setDesc(event.target.value);
+  };
+
   return (
     rarities.length > 0 && (
       <form>
@@ -100,6 +104,7 @@ export default function BasicSelect() {
             aria-label="minimum height"
             minRows={3}
             placeholder="Card Description"
+            onChange={handleChangeDesc}
             style={{ width: 300 }}
           />
         </FormControl>

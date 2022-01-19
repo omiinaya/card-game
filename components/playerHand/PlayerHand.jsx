@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import MonsterCard from "../monsterCard/MonsterCard";
 
-export default function PlayerHand(props) {
+export default function PlayerHand() {
   const [cards, setCards] = useState([]);
 
   const getCards = () => {

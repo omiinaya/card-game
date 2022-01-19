@@ -102,6 +102,11 @@
   margin: 0 -25px;
   position: relative;
   width: 100px;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
   &:after {
     // uncomment background below to see hit areas
     //background: rgba(255, 0, 0, 0.15);
