@@ -2,23 +2,30 @@ import { useDrag } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 
 const style = {
+    
     border: '1px dashed gray',
-    backgroundColor: 'white',
-    padding: '0.5rem 1rem',
-    marginRight: '1.5rem',
-    marginBottom: '1.5rem',
     cursor: 'move',
-    float: 'left',
+    zIndex: 10
 };
-export const Box = function Box({ name }) {
+export const Box = function Box({
+    cardName,
+    cardImage,
+    cardRarity,
+    cardType,
+    cardMonster,
+    cardDesc,
+    typeImage,
+    cardAtk,
+    cardDef
+}) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.BOX,
-        item: { name },
+        item: { cardName },
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
                 //function executed on drop
-                console.log(`You dropped ${item.name} into ${dropResult.name}!`);
+                console.log(`You dropped ${item.cardName} into ${dropResult.name}!`);
             }
         },
         collect: (monitor) => ({
@@ -27,7 +34,31 @@ export const Box = function Box({ name }) {
         }),
     }));
     const opacity = isDragging ? 0.4 : 1;
-    return (<div ref={drag} role="Box" style={{ ...style, opacity }} data-testid={`box-${name}`}>
-			{name}
-		</div>);
+    return (<div ref={drag} role="Box" style={{ ...style, opacity }} data-testid={`box-${cardName}`}>
+        <div>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap"
+                rel="stylesheet"
+            />
+            <div id="cardContainer">
+                <img
+                    id="cardTemplate"
+                    src="https://i.ibb.co/mG6jvpR/monster-normal.png"
+                />
+                <img
+                    id="cardFace"
+                    src={cardImage} />
+                <img
+                    id="starLevel"
+                    src="https://i.ibb.co/M1bYC6V/star.png"
+                />
+                <div id="cardTitle">{cardName}</div>
+                <img id="cardType" src={typeImage} />
+                <h4 id="monsterType">[{cardMonster}]</h4>
+                <div id="monsterDescription">{cardDesc}</div>
+                <div id="monsterAtk">{cardAtk}</div>
+                <div id="monsterDef">{cardDef}</div>
+            </div>
+        </div>
+    </div>);
 };

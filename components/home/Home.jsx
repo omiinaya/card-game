@@ -1,6 +1,6 @@
 import CardCreate from '../cardCreate/CardCreate'
-import PlayerHand from '../playerHand/PlayerHand'
-import Board from '../board/Board'
+//import PlayerHand from '../playerHand/PlayerHand'
+import PlayerHand from '../board/PlayerHand'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
@@ -13,9 +13,9 @@ export default function Home(props) {
         <h1 className="title">Hello world!</h1>
         <CardCreate />
         <DndProvider backend={HTML5Backend}>
-        <Board />
-        </DndProvider>
         <PlayerHand />
+        </DndProvider>
+        
         {user && (
           <div>
             {"User ID: "}
