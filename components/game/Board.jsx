@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 
 const PlayerHand = memo(function Container() {
 
-    const [cards, setCards] = useState([]);
-
+    const [onHand, setOnHand] = useState([]);
+    const [onField, setOnField] = useState([]);
+    
     const getCards = () => {
-        //if cards have not loaded yet then load them from server.
-        if (cards.length === 0) {
+        //if onHand have not loaded yet then load them from server.
+        if (onHand.length === 0) {
             axios.get(`/api/card`).then((res) => {
-                setCards(res.data.data);
+                setOnHand(res.data.data);
             });
         }
     };
@@ -22,17 +23,18 @@ const PlayerHand = memo(function Container() {
     }, []);
 
     useEffect(() => {
-        sortCardIds();
-    }, [cards]);
+        sordOnHand();
+        console.log(onField)
+    }, [onHand, onField]);
 
-    const handleCardPlayed = (x) => {
-        setCards(prev => prev.filter(card => {
-            return card.id != x - 1
+    const handleCardPlayed = (index) => {
+        setOnHand(prev => prev.filter(card => {
+            return card.id != index - 1
         }))
     }
 
-    const sortCardIds = () => {
-        var myArray = cards
+    const sordOnHand = () => {
+        var myArray = onHand
         myArray.forEach(function (element, index) {
             element.id = index;
         });
@@ -44,7 +46,7 @@ const PlayerHand = memo(function Container() {
                 <Field />
             </div>
             <div style={{ overflow: 'hidden', clear: 'both' }}>
-                <Hand cards={cards} playCard={handleCardPlayed}/>
+                <Hand cards={onHand} playCard={handleCardPlayed}/>
             </div>
         </div>
     );
