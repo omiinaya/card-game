@@ -9,9 +9,11 @@ const PlayerHand = memo(function Container() {
     const [cards, setCards] = useState([]);
 
     const getCards = () => {
-        axios.get(`/api/card`).then((res) => {
-            setCards(res.data.data);
-        });
+        if (cards.length === 0) {
+            axios.get(`/api/card`).then((res) => {
+                setCards(res.data.data);
+            });
+        }
     };
 
     useEffect(() => {
@@ -19,8 +21,19 @@ const PlayerHand = memo(function Container() {
     }, []);
 
     useEffect(() => {
+        console.log('changed')
         console.log(cards);
+        var myArray = cards
+        myArray.forEach(function (element, index) {
+            element.id = index;
+        });
     }, [cards]);
+
+    const handleCardPlayed = (x) => {
+        setCards(prev => prev.filter(card => {
+            return card.id != x-1
+        }))
+    }
 
     return (
         <div>
@@ -32,6 +45,7 @@ const PlayerHand = memo(function Container() {
                     <div key={card.cardName + index}>
                         <div className="generated-card">
                             <Box
+                                id={card.id}
                                 cardName={card.cardName}
                                 cardImage={card.cardImage}
                                 cardRarity={card.cardRarity}
@@ -41,6 +55,7 @@ const PlayerHand = memo(function Container() {
                                 cardMonster={card.cardMonster}
                                 cardAtk={card.cardATK}
                                 cardDef={card.cardDEF}
+                                playCard={handleCardPlayed}
                             />
                         </div>
                     </div>
