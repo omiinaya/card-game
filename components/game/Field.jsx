@@ -48,8 +48,8 @@ export const Field = (props) => {
                 ))}
             </div>
 
-        </div> 
-    ); 
-            }
+        </div>
+    );
+}
 
 export default Field
