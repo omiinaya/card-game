@@ -2,7 +2,7 @@ import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 
 const style = {
-    height: '450px',
+    height: '250px',
     width: '100%',
     marginRight: '1.5rem',
     marginBottom: '1.5rem',
@@ -14,10 +14,10 @@ const style = {
     float: 'left',
     zIndex: 5
 };
-export const Board = () => {
+export const Field = () => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
-        accept: ItemTypes.BOX,
-        drop: () => ({ name: 'Board' }),
+        accept: ItemTypes.CARD,
+        drop: () => ({ name: 'Field' }),
         collect: (monitor) => ({
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),
@@ -31,7 +31,11 @@ export const Board = () => {
     else if (canDrop) {
         backgroundColor = 'darkkhaki';
     }
-    return (<div ref={drop} role={'Board'} style={{ ...style, backgroundColor }}>
-			{isActive ? 'Release to drop' : 'Drag a box here'}
-		</div>);
-};
+    return (
+        <div ref={drop} role={'Field'} style={{ ...style, backgroundColor }}>
+            {isActive ? 'Release to drop' : 'Drag a box here'}
+        </div>
+    );
+}
+
+export default Field

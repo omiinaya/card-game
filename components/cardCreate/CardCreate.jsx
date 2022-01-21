@@ -37,14 +37,14 @@ export default function BasicSelect() {
   }, []);
 
   useEffect(() => {
-    console.log("Rarity: " + rarity);
-    console.log("Name: " + name);
-    console.log("Image: " + image);
+    //console.log("Rarity: " + rarity);
+    //console.log("Name: " + name);
+    //console.log("Image: " + image);
   }, [rarity, name, image]);
 
   useEffect(() => {
-    console.log(rarities);
-    console.log(types);
+    //console.log(rarities);
+    //console.log(types);
   }, [rarities, types]);
 
   const handleChangeName = (event) => {
