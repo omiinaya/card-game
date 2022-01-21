@@ -54,7 +54,7 @@ const PlayerHand = memo(function Container() {
     return (
         <div>
             <div style={{ overflow: 'hidden', clear: 'both' }}>
-                <Field />
+                <Field cards={onField}/>
             </div>
             <div style={{ overflow: 'hidden', clear: 'both' }}>
                 <Hand cards={onHand} playCard={handleCardPlayed} />
