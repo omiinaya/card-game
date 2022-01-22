@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             cardATK: DataTypes.INTEGER,
             cardDEF: DataTypes.INTEGER,
             typeImage: DataTypes.STRING,
-            cardMonster: DataTypes.STRING
+            cardSubType: DataTypes.STRING
         }
     );
     return cards;

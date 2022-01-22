@@ -34,7 +34,7 @@ const handler = nextConnect()
       cardType,
       cardATK,
       cardDEF,
-      cardMonster,
+      cardSubType,
       typeImage
     } = body;
     const newCard = await models.cards.create({
@@ -45,7 +45,7 @@ const handler = nextConnect()
       cardType,
       cardATK,
       cardDEF,
-      cardMonster,
+      cardSubType,
       typeImage,
       status: 1,
     });

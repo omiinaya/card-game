@@ -13,7 +13,7 @@ export const Card = function Card({
     cardImage,
     cardRarity,
     cardType,
-    cardMonster,
+    cardSubType,
     cardDesc,
     typeImage,
     cardAtk,
@@ -44,7 +44,7 @@ export const Card = function Card({
                 cardImage={cardImage}
                 cardRarity={cardRarity}
                 cardType={cardType}
-                cardMonster={cardMonster}
+                cardSubType={cardSubType}
                 cardDesc={cardDesc}
                 typeImage={typeImage}
                 cardAtk={cardAtk}

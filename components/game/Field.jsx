@@ -3,15 +3,13 @@ import { ItemTypes } from './ItemTypes';
 import CardCard from '../cardCard/CardCard';
 
 const style = {
-    height: '250px',
+    height: '450px',
     width: '100%',
-    color: 'white',
     zIndex: 5,
     position: 'absolute',
-    bottom: '150px',
+    bottom: '250px',
 }
 export const Field = (props) => {
-    console.log(props.cards)
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: ItemTypes.CARD,
         drop: () => ({ name: 'Field' }),
@@ -20,8 +18,10 @@ export const Field = (props) => {
             canDrop: monitor.canDrop(),
         }),
     }));
+
     const isActive = canDrop && isOver;
     let backgroundColor = '#222';
+
     if (isActive) {
         backgroundColor = 'darkgreen';
     }
@@ -32,31 +32,43 @@ export const Field = (props) => {
 
     return (
         <div ref={drop} role={'Field'} style={{ ...style, backgroundColor }}>
-            <div style={{display: 'flex', justifyContent: 'center'}}>test</div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                color: 'white'
+            }}>
+                playable area
+            </div>
             <div style={{
                 margin: '0 auto',
                 position: 'absolute',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                textAlign: 'center',
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
-                height: '150px'
+                height: '250px'
             }}>
                 {props.cards.map((card) => (
-                    <div style={{ marginLeft: '20px', marginRight: '20px' }} key={'field' + card.cardName}>
+                    <div style={{ marginLeft: '10px', marginRight: '10px' }} key={'field' + card.cardName}>
                         <div className="generated-card">
-                            <CardCard 
-                                cardName={card.cardName} 
-                                cardImage={card.cardImage} 
-
+                            <CardCard
+                                id={card.id}
+                                cardName={card.cardName}
+                                cardImage={card.cardImage}
+                                cardRarity={card.cardRarity}
+                                cardType={card.cardType}
+                                typeImage={card.typeImage}
+                                cardDesc={card.cardDesc}
+                                cardSubType={card.cardSubType}
+                                cardAtk={card.cardATK}
+                                cardDef={card.cardDEF}
+                                playCard={props.playCard}
                             />
                         </div>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 }

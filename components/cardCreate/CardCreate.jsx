@@ -9,15 +9,19 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import axios from "axios";
 
 export default function BasicSelect() {
-  const [name, setName] = useState("");
+  //selectors
   const [rarities, setRarities] = useState([]);
   const [types, setTypes] = useState([]);
+  //card info
+  const [name, setName] = useState("");
   const [rarity, setRarity] = useState("Common");
   const [image, setImage] = useState("");
   const [desc, setDesc] = useState("");
   const [type, setType] = useState("");
+  const [subType, setSubType] = useState("");
   const [atk, setAtk] = useState(0);
   const [def, setDef] = useState(0);
+  const [data, setData] = useState([]);
 
   const getRarities = () => {
     axios.get(`/api/cardRarity`).then((res) => {
@@ -37,14 +41,15 @@ export default function BasicSelect() {
   }, []);
 
   useEffect(() => {
-    //console.log("Rarity: " + rarity);
-    //console.log("Name: " + name);
-    //console.log("Image: " + image);
+    //console.clear();
+    console.log("Rarity: " + rarity);
+    console.log("Name: " + name);
+    console.log("Image: " + image);
   }, [rarity, name, image]);
 
   useEffect(() => {
-    //console.log(rarities);
-    //console.log(types);
+    console.log(rarities);
+    console.log(types);
   }, [rarities, types]);
 
   const handleChangeName = (event) => {
@@ -63,9 +68,22 @@ export default function BasicSelect() {
     setDesc(event.target.value);
   };
 
+  const getData = () => {
+    setData({
+      cardName: name,
+      cardType: type,
+      cardRarity: rarity,
+      cardSubType: subType,
+      cardImage: image,
+      cardDesc: desc,
+      cardATK: atk,
+      cardDEF: def,
+    })
+  }
+
   return (
     rarities.length > 0 && (
-      <form>
+      <div>
         <FormControl style={{ minWidth: 105, margin: 0 }}>
           <InputLabel>Card Rarity:</InputLabel>
           <Select value={rarity} label="Service" onChange={handleChangeRarity}>
@@ -108,7 +126,9 @@ export default function BasicSelect() {
             style={{ width: 300 }}
           />
         </FormControl>
-      </form>
+        <button onClick={getData}>test1</button>
+        <button onClick={()=> {console.log(data)}}>test2</button>
+      </div>
     )
   );
 }

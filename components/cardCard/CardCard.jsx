@@ -20,10 +20,10 @@ export default function CardCard(props) {
         />
         <div id="cardTitle">{props.cardName}</div>
         <img id="cardType" src={props.typeImage} />
-        <h4 id="monsterType">[{props.cardMonster}]</h4>
-        <div id="monsterDescription">{props.cardDesc}</div>
-        <div id="monsterAtk">{props.cardAtk}</div>
-        <div id="monsterDef">{props.cardDef}</div>
+        <h4  id="cardSubType">[{props.cardSubType}]</h4>
+        <div id="cardDesc">{props.cardDesc}</div>
+        <div id="cardAtk">{props.cardAtk}</div>
+        <div id="cardDef">{props.cardDef}</div>
       </div>
     </div>
   );

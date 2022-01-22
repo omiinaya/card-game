@@ -4,7 +4,7 @@ import { getAppCookies, verifyToken } from '../middleware/utils';
 import NProgress from 'nprogress';
 import UserNav from '../components/navigation/User';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import "../public/nprogress.scss";
+import "../public/global.scss";
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', url => {

@@ -13,7 +13,7 @@ export const Hand = (props) => {
                         cardType={card.cardType}
                         typeImage={card.typeImage}
                         cardDesc={card.cardDesc}
-                        cardMonster={card.cardMonster}
+                        cardSubType={card.cardSubType}
                         cardAtk={card.cardATK}
                         cardDef={card.cardDEF}
                         playCard={props.playCard}
