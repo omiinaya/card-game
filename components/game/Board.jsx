@@ -24,12 +24,12 @@ const PlayerHand = memo(function Container() {
 
     useEffect(() => {
         sortOnHand()
-        console.log(onHand)
+        //console.log(onHand)
     }, [onHand]);
 
     useEffect(() => {
         sortOnField()
-        console.log(onField)
+        //console.log(onField)
     }, [onField]);
 
     const handleCardPlayed = (index) => {

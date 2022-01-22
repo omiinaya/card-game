@@ -1,5 +1,6 @@
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
+import CardCard from '../cardCard/CardCard';
 
 const style = {
     height: '250px',
@@ -31,6 +32,7 @@ export const Field = (props) => {
 
     return (
         <div ref={drop} role={'Field'} style={{ ...style, backgroundColor }}>
+            <div style={{display: 'flex', justifyContent: 'center'}}>test</div>
             <div style={{
                 margin: '0 auto',
                 position: 'absolute',
@@ -39,11 +41,18 @@ export const Field = (props) => {
                 textAlign: 'center',
                 display: 'flex',
                 justifyContent: 'center',
-                width: '100%'
+                width: '100%',
+                height: '150px'
             }}>
                 {props.cards.map((card) => (
-                    <div style={{ margin: '20px' }}>
-                        {card.cardName}
+                    <div style={{ marginLeft: '20px', marginRight: '20px' }} key={'field' + card.cardName}>
+                        <div className="generated-card">
+                            <CardCard 
+                                cardName={card.cardName} 
+                                cardImage={card.cardImage} 
+
+                            />
+                        </div>
                     </div>
                 ))}
             </div>

@@ -12,9 +12,8 @@ export default function Home(props) {
         <h1 className="title">Hello world!</h1>
         <CardCreate />
         <DndProvider backend={HTML5Backend}>
-        <Board />
+          <Board />
         </DndProvider>
-        
         {user && (
           <div>
             {"User ID: "}

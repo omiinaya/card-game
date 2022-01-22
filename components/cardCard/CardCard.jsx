@@ -1,7 +1,7 @@
-export default function Card(props) {
+export default function CardCard(props) {
   //console.log(props)
   return (
-    <div id="card">
+    <div>
       <link
         href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap"
         rel="stylesheet"
