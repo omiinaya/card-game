@@ -1,3 +1,5 @@
+$card-scale: 0.63;
+
 #cardContainer {
   max-width: 400px;
   width: 275px;
@@ -87,17 +89,21 @@
 }
 
 .cards {
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
-  height: 250px;
   justify-content: center;
-  position: fixed;
 }
 
-.generated-card {
-  transform: scale(0.63);
+.generated-field-card {
+  transform: scale($card-scale);
   transform-origin: top left;
-  width: 100px
+  margin: 5px;
+  width: 175px;
+}
+
+.generated-hand-card {
+  transform: scale($card-scale);
+  transform-origin: top left;
+  padding-left: 57px;
+  margin-left: -70px;
+  width: 175px;
 }

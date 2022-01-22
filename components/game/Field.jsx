@@ -3,11 +3,11 @@ import { ItemTypes } from './ItemTypes';
 import CardCard from '../cardCard/CardCard';
 
 const style = {
-    height: '450px',
+    height: '265px',
     width: '100%',
     zIndex: 5,
     position: 'absolute',
-    bottom: '250px',
+    bottom: '260px',
 }
 export const Field = (props) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -33,13 +33,6 @@ export const Field = (props) => {
     return (
         <div ref={drop} role={'Field'} style={{ ...style, backgroundColor }}>
             <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                color: 'white'
-            }}>
-                playable area
-            </div>
-            <div style={{
                 margin: '0 auto',
                 position: 'absolute',
                 top: '50%',
@@ -47,11 +40,11 @@ export const Field = (props) => {
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
-                height: '250px'
+                height: '100%'
             }}>
                 {props.cards.map((card) => (
-                    <div style={{ marginLeft: '10px', marginRight: '10px' }} key={'field' + card.cardName}>
-                        <div className="generated-card">
+                    <div key={'field' + card.cardName}>
+                        <div className="generated-field-card">
                             <CardCard
                                 id={card.id}
                                 cardName={card.cardName}

@@ -2,9 +2,18 @@ import { Card } from './Card';
 
 export const Hand = (props) => {
     return (
-        <div className="cards">
+        <div style={{
+            margin: '0 auto',
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            height: '255px',
+            margin: '0 !important',
+            bottom: 0
+        }}>
             {props.cards.map((card, index) => (
-                <div className="generated-card" key={card.cardName + index}>
+                <div className="generated-hand-card" key={card.cardName + index}>
                     <Card
                         id={card.id}
                         cardName={card.cardName}
