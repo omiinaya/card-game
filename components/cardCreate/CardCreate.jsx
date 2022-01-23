@@ -14,24 +14,26 @@ export default function BasicSelect() {
   const [types, setTypes] = useState([]);
   //card info
   const [name, setName] = useState("");
-  const [rarity, setRarity] = useState("Common");
+  const [rarity, setRarity] = useState("");
   const [image, setImage] = useState("");
   const [desc, setDesc] = useState("");
   const [type, setType] = useState("");
   const [subType, setSubType] = useState("");
-  const [atk, setAtk] = useState(0);
-  const [def, setDef] = useState(0);
+  const [atk, setATK] = useState(0);
+  const [def, setDEF] = useState(0);
   const [data, setData] = useState([]);
 
   const getRarities = () => {
     axios.get(`/api/cardRarity`).then((res) => {
       setRarities(res.data.data);
+      setRarity(res.data.data[0].rarityName)
     });
   };
 
   const getTypes = () => {
     axios.get(`/api/cardType`).then((res) => {
       setTypes(res.data.data);
+      setType(res.data.data[0].typeName)
     });
   };
 
@@ -41,11 +43,8 @@ export default function BasicSelect() {
   }, []);
 
   useEffect(() => {
-    //console.clear();
-    console.log("Rarity: " + rarity);
-    console.log("Name: " + name);
-    console.log("Image: " + image);
-  }, [rarity, name, image]);
+    console.log(data)
+  }, [data]);
 
   useEffect(() => {
     console.log(rarities);
@@ -60,6 +59,10 @@ export default function BasicSelect() {
     setRarity(event.target.value);
   };
 
+  const handleChangeType = (event) => {
+    setType(event.target.value);
+  };
+
   const handleChangeImage = (event) => {
     setImage(event.target.value);
   };
@@ -68,25 +71,61 @@ export default function BasicSelect() {
     setDesc(event.target.value);
   };
 
-  const getData = () => {
-    setData({
-      cardName: name,
-      cardType: type,
-      cardRarity: rarity,
-      cardSubType: subType,
-      cardImage: image,
-      cardDesc: desc,
+  const handleChangeATK = (event) => {
+    setATK(event.target.value);
+  };
+
+  const handleChangeDEF = (event) => {
+    setDEF(event.target.value);
+  };
+
+  /*
+  const handleChangeSubtype = (event) => {
+    setSubType(event.target.value);
+  };
+  */
+
+  async function handleSubmit() {
+    let x = {
+      cardName: name, //
+      cardType: type, //
+      cardRarity: rarity, //
+      //cardSubType: subType,
+      cardImage: image, //
+      cardDesc: desc, //
       cardATK: atk,
       cardDEF: def,
-    })
+    }
+    setData(x)
+
+    const loginApi = await fetch(`api/card`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(x),
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+    let result = await loginApi.json();
+    if (result.success) {
+      console.log(result)
+      //Router.push('/');
+    }
   }
 
   return (
     rarities.length > 0 && (
       <div>
-        <FormControl style={{ minWidth: 105, margin: 0 }}>
-          <InputLabel>Card Rarity:</InputLabel>
-          <Select value={rarity} label="Service" onChange={handleChangeRarity}>
+        <FormControl style={{ margin: 0, display: "block" }}>
+          <InputLabel shrink={true}>Card Rarity:</InputLabel>
+          <Select
+            style={{ width: 300 }}
+            value={rarity}
+            label="Rarity"
+            onChange={handleChangeRarity}
+          >
             {rarities.map((x) => (
               <MenuItem key={x.rarityName} value={x.rarityName}>
                 {x.rarityName}
@@ -94,9 +133,24 @@ export default function BasicSelect() {
             ))}
           </Select>
         </FormControl>
-
-        <FormControl style={{ minWidth: 105, margin: 0 }}>
+        <FormControl style={{ margin: 0, display: "block" }}>
+          <InputLabel shrink={true}>Card Type:</InputLabel>
+          <Select
+            style={{ width: 300 }}
+            value={type}
+            label="Type"
+            onChange={handleChangeType}
+          >
+            {types.map((x) => (
+              <MenuItem key={x.typeName} value={x.typeName}>
+                {x.typeName}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl style={{ margin: 0, display: "block" }}>
           <TextField
+            style={{ width: 300 }}
             id="cardName"
             name="cardName"
             label="Card Name:"
@@ -106,9 +160,9 @@ export default function BasicSelect() {
             variant="standard"
           />
         </FormControl>
-        <FormControl style={{ minWidth: 205, margin: 0, display: "block" }}>
+        <FormControl style={{ margin: 0, display: "block" }}>
           <TextField
-            style={{ minWidth: 300 }}
+            style={{ width: 300 }}
             id="cardImage"
             name="cardImage"
             label="Image Link:"
@@ -118,7 +172,7 @@ export default function BasicSelect() {
             variant="standard"
           />
         </FormControl>
-        <FormControl>
+        <FormControl style={{ margin: 0, display: "block" }}>
           <TextareaAutosize
             aria-label="minimum height"
             minRows={3}
@@ -127,8 +181,29 @@ export default function BasicSelect() {
             style={{ width: 300 }}
           />
         </FormControl>
-        <button onClick={getData}>test1</button>
-        <button onClick={()=> {console.log(data)}}>test2</button>
+        <FormControl style={{ margin: 0, display: "block" }}>
+          <TextField
+            style={{ width: 150 }}
+            id="cardATK"
+            name="cardATK"
+            label="Attack Points:"
+            defaultValue={image}
+            onChange={handleChangeATK}
+            InputLabelProps={{ shrink: true }}
+            variant="standard"
+          />
+          <TextField
+            style={{ width: 150 }}
+            id="cardDEF"
+            name="cardDEF"
+            label="Defense Points:"
+            defaultValue={image}
+            onChange={handleChangeDEF}
+            InputLabelProps={{ shrink: true }}
+            variant="standard"
+          />
+        </FormControl>
+        <button onClick={handleSubmit}>test1</button>
       </div>
     )
   );
