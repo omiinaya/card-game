@@ -1,4 +1,5 @@
 export const ItemTypes = {
-    CARD: 'card',
+    HANDCARD: 'handcard',
+    FIELDCARD: 'fieldcard'
   }
   

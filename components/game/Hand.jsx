@@ -1,4 +1,4 @@
-import { Card } from './Card';
+import { HandCard } from './HandCard';
 
 export const Hand = (props) => {
     return (
@@ -14,7 +14,7 @@ export const Hand = (props) => {
         }}>
             {props.cards.map((card, index) => (
                 <div className="generated-hand-card" key={card.cardName + index}>
-                    <Card
+                    <HandCard
                         id={card.id}
                         cardName={card.cardName}
                         cardImage={card.cardImage}

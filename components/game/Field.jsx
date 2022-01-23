@@ -1,6 +1,6 @@
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
-import CardCard from '../cardCard/CardCard';
+import FieldCard from './FieldCard';
 
 const style = {
     height: '265px',
@@ -11,7 +11,7 @@ const style = {
 }
 export const Field = (props) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
-        accept: ItemTypes.CARD,
+        accept: ItemTypes.HANDCARD,
         drop: () => ({ name: 'Field' }),
         collect: (monitor) => ({
             isOver: monitor.isOver(),
@@ -42,10 +42,10 @@ export const Field = (props) => {
                 width: '100%',
                 height: '100%'
             }}>
-                {props.cards.map((card) => (
-                    <div key={'field' + card.cardName}>
+                {props.cards.map((card, index) => (
+                    <div key={'field' + card.cardName + index}>
                         <div className="generated-field-card">
-                            <CardCard
+                            <FieldCard
                                 id={card.id}
                                 cardName={card.cardName}
                                 cardImage={card.cardImage}
