@@ -7,7 +7,7 @@ const middleware = nextConnect();
 /* middleware.use(database).use(session).use(passport.initialize()).use(passport.session()); */
 
 /* Set restricted public access / put any api access that is restricted in here */
-const restricted = ['/api/post/[slug]', '/api/job/[slug]'];
+const restricted = [''];
 
 /*
  * @params {request, response, callback} default Request and Response

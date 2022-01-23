@@ -11,17 +11,7 @@ const handler = nextConnect()
     const user = await models.users.findOne({
       where: {
         id: userId,
-      },
-      include: [
-        {
-          model: models.posts,
-          as: 'posts',
-        },
-        {
-          model: models.jobs,
-          as: 'jobs',
-        },
-      ],
+      }
     });
     res.statusCode = 200;
     return res.json({ status: 'success', data: user });
