@@ -3,14 +3,10 @@ import { HandCard } from './HandCard';
 export const Hand = (props) => {
     return (
         <div style={{
-            margin: '0 auto',
-            position: 'absolute',
             display: 'flex',
             justifyContent: 'center',
             width: '100%',
-            height: '255px',
-            margin: '0 !important',
-            bottom: 0
+            height: '255px'
         }}>
             {props.cards.map((card, index) => (
                 <div className="generated-hand-card" key={card.cardName + index}>

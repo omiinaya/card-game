@@ -1,18 +1,19 @@
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
+import CardCard from '../cardCard/CardCard';
 
 const style = {
     height: '265px',
     width: '175px',
     zIndex: 10,
     position: 'absolute',
-    bottom: '530px',
     color: 'white'
 }
 export const Enemy = (props) => {
+    const card = props.card
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: ItemTypes.FIELDCARD,
-        drop: () => ({ name: 'Enemy' }),
+        drop: () => ({ name: card.cardName }),
         collect: (monitor) => ({
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),
@@ -32,18 +33,19 @@ export const Enemy = (props) => {
 
     return (
         <div ref={drop} role={'Enemy'} style={{ ...style, backgroundColor }}>
-            <div style={{
-                margin: '0 auto',
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                display: 'flex',
-                justifyContent: 'center',
-                width: '100%',
-                height: '100%'
-            }}>
-                test
-            </div>
+            <CardCard
+                id={card.id}
+                cardName={card.cardName}
+                cardImage={card.cardImage}
+                cardRarity={card.cardRarity}
+                cardType={card.cardType}
+                typeImage={card.typeImage}
+                cardDesc={card.cardDesc}
+                cardSubType={card.cardSubType}
+                cardAtk={card.cardATK}
+                cardDef={card.cardDEF}
+                playCard={props.playCard}
+            />
         </div>
     );
 }

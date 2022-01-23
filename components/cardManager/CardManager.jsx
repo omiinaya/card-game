@@ -85,7 +85,7 @@ export default function Album() {
                                         cardName={cards[index].cardName}
                                         cardImage={cards[index].cardImage}
                                         cardRarity={cards[index].cardRarity}
-                                        cardMonster={cards[index].cardMonster}
+                                        cardSubType={cards[index].cardSubType}
                                         cardDesc={cards[index].cardDesc}
                                         cardAtk={cards[index].cardATK}
                                         cardDef={cards[index].cardDEF}

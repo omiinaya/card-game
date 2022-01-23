@@ -27,7 +27,7 @@ const FieldCard = function FieldCard({
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
                 //playCard(item.id)
-                console.log(`You dropped ${item.cardName} into ${dropResult.name}!`);
+                console.log(`You used ${item.cardName} to attack ${dropResult.name}!`);
             }
         },
         collect: (monitor) => ({

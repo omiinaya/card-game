@@ -4,9 +4,7 @@ import FieldCard from './FieldCard';
 
 const style = {
     height: '265px',
-    width: '100%',
-    position: 'absolute',
-    bottom: '260px',
+    width: '100%'
 }
 export const Field = (props) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -32,10 +30,6 @@ export const Field = (props) => {
     return (
         <div ref={drop} role={'Field'} style={{ ...style, backgroundColor }}>
             <div style={{
-                margin: '0 auto',
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
