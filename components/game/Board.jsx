@@ -37,8 +37,8 @@ const PlayerHand = memo(function Container() {
 
     const handleCardPlayed = (index) => {
         setOnHand(prev => prev.filter((card) => {
-            console.log(card.id, index)
-            return Number(card.id) != Number(index - 1)
+            //console.log(card.id, index)
+            return card.id != index - 1
         }))
         setOnField(prevArray => [...prevArray, onHand.filter(card => card.id == index - 1)[0]])
     }
