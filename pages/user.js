@@ -7,7 +7,6 @@ import Router, { useRouter } from 'next/router';
 import { absoluteUrl } from '../middleware/utils';
 
 /* components */
-import Layout from '../components/layout/Layout';
 import UserNav from '../components/navigation/User';
 
 function User(props) {
@@ -42,11 +41,6 @@ function User(props) {
   }
 
   return (
-    <Layout
-      title="Next.js with Sequelize | User Page"
-      url={`${origin}${router.asPath}`}
-      origin={origin}
-    >
       <div className="container">
         <main>
           <UserNav props={{ user: user }} />
@@ -79,7 +73,6 @@ function User(props) {
           </div>
         </main>
       </div>
-    </Layout>
   );
 }
 

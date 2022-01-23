@@ -7,7 +7,6 @@ import Router, { useRouter } from 'next/router';
 import { absoluteUrl, getAppCookies } from '../middleware/utils';
 
 /* components */
-import Layout from '../components/layout/Layout';
 import UserNav from '../components/navigation/User';
 
 function Post(props) {
@@ -45,11 +44,6 @@ function Post(props) {
   }
 
   return (
-    <Layout
-      title="Next.js with Sequelize | Posts Page"
-      url={`${origin}${router.asPath}`}
-      origin={origin}
-    >
       <div className="container">
         <main>
           <h1 className="title">
@@ -130,7 +124,6 @@ function Post(props) {
           </div>
         </main>
       </div>
-    </Layout>
   );
 }
 
