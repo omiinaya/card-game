@@ -18,7 +18,7 @@ const FieldCard = function FieldCard({
     typeImage,
     cardAtk,
     cardDef,
-    playCard
+    //playCard
 }) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.FIELDCARD,
@@ -26,7 +26,7 @@ const FieldCard = function FieldCard({
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
-                playCard(item.id)
+                //playCard(item.id)
                 console.log(`You dropped ${item.cardName} into ${dropResult.name}!`);
             }
         },

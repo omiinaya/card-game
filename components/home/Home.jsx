@@ -1,4 +1,3 @@
-import CardCreate from '../cardCreate/CardCreate'
 import Board from '../game/Board'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -11,7 +10,6 @@ export default function Home(props) {
   return (
     <div className="container">
       <main>
-        <CardCreate />
         <DndProvider backend={deviceType==='desktop' ? HTML5Backend : TouchBackend}>
           <Board />
         </DndProvider>

@@ -5,7 +5,6 @@ import FieldCard from './FieldCard';
 const style = {
     height: '265px',
     width: '100%',
-    zIndex: 5,
     position: 'absolute',
     bottom: '260px',
 }

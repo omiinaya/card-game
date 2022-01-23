@@ -8,8 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
-import MonsterCard from '../monsterCard/MonsterCard'
-import axios from 'axios'
+import CardCard from '../cardCard/CardCard';
+import CardCreate from '../cardCreate/CardCreate'
+import axios from 'axios';
 
 
 export default function Album() {
@@ -63,15 +64,24 @@ export default function Album() {
                         </Button>
                     </Box>
                 </div>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    margin: 10
+                }}>
+                    <CardCreate />
+                </div>
                 <Container sx={{ py: 8 }} maxWidth="md">
                     <Grid container spacing={4} display='flex' justifyContent='center'>
-
                         {cards.map((card, index) => (
                             <Grid item key={index} xs={12} sm={5} md={4}>
                                 <Card
-                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                >
-                                    <MonsterCard
+                                    sx={{
+                                        height: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column'
+                                    }}>
+                                    <CardCard
                                         cardName={cards[index].cardName}
                                         cardImage={cards[index].cardImage}
                                         cardRarity={cards[index].cardRarity}
