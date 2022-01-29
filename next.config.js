@@ -27,6 +27,26 @@ module.exports = {
       dns: 'empty',
       fs: 'empty',
     };
+    config.module.rules.push({
+      test: /\.(png|jpg|gif|svg)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 10240,
+            fallback: {
+              loader: 'file-loader',
+              options: {
+                name: 'img/[name].[ext]',
+                esModule: false
+              }
+            },
+            esModule: false
+          }
+        }
+      ],
+      exclude: /node_modules/
+    });
     return config;
   },
 };
