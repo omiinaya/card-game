@@ -40,7 +40,7 @@ const ITEMS = [
   },
 ];
 
-export const Container = memo(function Container() {
+const Container = memo(function Container() {
   const [cards, setCards] = useState(ITEMS);
   const findCard = useCallback(
     (id) => {
@@ -81,3 +81,5 @@ export const Container = memo(function Container() {
     </div>
   );
 });
+
+export default Container;

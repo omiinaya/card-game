@@ -3,7 +3,7 @@ import Field from "./Field";
 import Hand from "./Hand";
 import axios from "axios";
 import { useEffect, useState } from "react";
-//import Example from "./Example";
+//import Container from "./Container";
 
 const PlayerHand = () => {
   const [onHand, setOnHand] = useState([]);
@@ -66,7 +66,7 @@ const PlayerHand = () => {
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Field cards={onField} />
-        {/*<Example />*/}
+        {/*<Container /> */}
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Hand cards={onHand} playCard={handleCardPlayed} />
