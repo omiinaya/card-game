@@ -3,7 +3,7 @@ import { ItemTypes } from './ItemTypes';
 import CardCard from '../cardCard/CardCard';
 
 const style = {
-    border: '1px dashed gray',
+    //border: '1px dashed gray',
     cursor: 'move',
     zIndex: 10
 };

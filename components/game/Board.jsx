@@ -1,6 +1,5 @@
 import EField from "./EField";
 import Field from "./Field";
-import NewField from "./NewField";
 import Hand from "./Hand";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -66,13 +65,12 @@ const PlayerHand = () => {
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Field cards={onField} />
-       {/* <NewField cards={onField} />*/}
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Hand cards={onHand} playCard={handleCardPlayed} />
       </div>
     </div>
   );
-}
+};
 
 export default PlayerHand;

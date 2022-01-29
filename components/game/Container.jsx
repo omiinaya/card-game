@@ -40,7 +40,6 @@ const Container = memo(function Container(props) {
           ],
         })
       );
-      console.log(`testing`);
     },
     [findCard, cards, setCards]
   );
@@ -51,7 +50,7 @@ const Container = memo(function Container(props) {
         <Card
           key={card.id}
           id={`${card.id}`}
-          cardName={card.cardName}
+          card={card}
           moveCard={moveCard}
           findCard={findCard}
         />

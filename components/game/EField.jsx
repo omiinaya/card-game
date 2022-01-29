@@ -2,7 +2,7 @@ import Enemy from './Enemy';
 
 export const EField = (props) => {
     const style = {
-        height: '265px',
+        height: '270px',
         width: '100%',
     }
     return (
