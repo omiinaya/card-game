@@ -94,15 +94,11 @@ $card-scale: 0.63;
 }
 
 .generated-efield-card {
-  transform: scale($card-scale);
-  transform-origin: top left;
   margin: 5px;
   width: 175px;
 }
 
 .generated-field-card {
-  transform: scale($card-scale);
-  transform-origin: top left;
   margin: 5px;
   width: 175px;
 }

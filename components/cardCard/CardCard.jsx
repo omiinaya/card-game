@@ -1,6 +1,21 @@
+import {
+  Card,
+  Frame,
+  Cost,
+  Image,
+  Title,
+  Set,
+  Rarity,
+  Text,
+  Strength,
+  Health,
+  Race,
+} from "../hsCard/HearthstoneCard";
+
 export default function CardCard(props) {
   //console.log(props)
   return (
+    /*
     <div style={{ color: 'black' }}>
       <link
         href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap"
@@ -26,5 +41,20 @@ export default function CardCard(props) {
         <div id="cardDef">{props.cardDef}</div>
       </div>
     </div>
+    */
+    <Card>
+      <Image id={props.cardName} clip />
+      <Frame />
+      <Cost fontFamily="Belwe">?</Cost>
+      <Race fontFamily="Belwe">{props.cardSubType}</Race>
+      <Health fontFamily="Belwe">{props.cardDef}</Health>
+      <Strength fontFamily="Belwe">{props.cardAtk}</Strength>
+      <Rarity id="common" />
+      <Title fontFamily="Belwe" flow>
+        {props.cardName}
+      </Title>
+      <Set id="gvg" />
+      <Text rich>{"<b>Deathrattle:</b> Summon a random 2-Cost minion."}</Text>
+    </Card>
   );
 }

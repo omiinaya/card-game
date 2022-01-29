@@ -47,11 +47,9 @@ export const Frame = () =>
   <image
     id="mNeutral"
     type="MSBitmapLayer"
-    x="0"
-    y="0"
     width="764"
     height="1100"
-    href={require("../../public/img/mNeutral.png")}
+    href="https://omiinaya.sirv.com/Images/card_game/mNeutral.png"
   />;
 
 export const Cost = ({ children, fontFamily }) =>
@@ -63,7 +61,7 @@ export const Cost = ({ children, fontFamily }) =>
       y="0"
       width="179"
       height="177"
-      href={require("../../public/img/gem.png")}
+      href="https://omiinaya.sirv.com/Images/card_game/gem.png"
     />
     {children &&
       <text
@@ -84,17 +82,21 @@ export const Cost = ({ children, fontFamily }) =>
       </text>}
   </g>;
 
-export const Image = ({ id, clip }) =>
-  <image
+export const Image = ({ id, clip }) => {
+  var parsed = id.replaceAll(' ', '').replaceAll("'", "").toLowerCase()
+  return (
+    <image
     id="GVG_096"
     type="MSBitmapLayer"
     x="117"
     y="78"
     width="563"
     height="563"
-    href={require(`../../public/img/${id}.jpg`)}
+    href={`https://omiinaya.sirv.com/Images/card_game/${parsed}.jpg`}
     clipPath={clip && "url(#image-clip-path)"}
-  />;
+  />
+  )
+}
 
 export const Title = ({ children, fontFamily, flow }) =>
   <g>
@@ -105,7 +107,7 @@ export const Title = ({ children, fontFamily, flow }) =>
       y="544"
       width="608"
       height="144"
-      href={require("../../public/img/title.png")}
+      href="https://omiinaya.sirv.com/Images/card_game/title.png"
     />
     <path
       d="M132.136068,658.415668 L158.602985,658.415668 L195.542113,654.574341 L239.403219,646.250954 L286.712401,636.537631 L330.569125,627.824309 L370.500212,621.544734 L417.380027,616.536918 L468.965349,612.62111 L514.245993,612.065751 L561.730426,611.499499 L603.168677,613.11738 L633.386442,620.9085"
@@ -145,7 +147,7 @@ export const Rarity = ({ id }) =>
     y="606"
     width="146"
     height="146"
-    href={require(`../../public/img/rarity-${id}.png`)}
+    href={`https://omiinaya.sirv.com/Images/card_game/rarity-${id}.png`}
   />;
 
 export const Set = ({ id }) =>
@@ -156,7 +158,7 @@ export const Set = ({ id }) =>
     y="726"
     width="281"
     height="244"
-    href={require(`../../public/img/bg-${id}.png`)}
+    href={`https://omiinaya.sirv.com/Images/card_game/bg-${id}.png`}
   />;
 
 export const Text = ({ children, rich }) => {
@@ -217,7 +219,7 @@ export const Strength = ({ children, fontFamily }) =>
       y="0"
       width="214"
       height="238"
-      href={require("../../public/img/attack.png")}
+      href="https://omiinaya.sirv.com/Images/card_game/attack.png"
     />
     {children &&
       <text
@@ -247,7 +249,7 @@ export const Health = ({ children, fontFamily }) =>
       y="0"
       width="167"
       height="218"
-      href={require("../../public/img/health.png")}
+      href="https://omiinaya.sirv.com/Images/card_game/health.png"
     />
     {children &&
       <text
@@ -277,7 +279,7 @@ export const Race = ({ children, fontFamily }) =>
       y="0"
       width="529"
       height="106"
-      href={require("../../public/img/race.png")}
+      href="https://omiinaya.sirv.com/Images/card_game/race.png"
     />
     {children &&
       <text
