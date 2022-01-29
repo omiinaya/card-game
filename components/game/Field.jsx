@@ -4,12 +4,19 @@ import Container from "./Container";
 
 const style = {
   height: "250px",
+  //width: "175px",
   border: "1px dotted black",
 };
 export const Field = (props) => {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.HANDCARD,
     drop: () => ({ name: "Field" }),
+    //enabling and disabling drop ability.
+    canDrop: (item, monitor) => {
+      console.log(item, monitor)
+      return true
+    },
+    //
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
