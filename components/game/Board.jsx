@@ -18,7 +18,7 @@ const PlayerHand = memo(function Container() {
             axios.get(`/api/card`).then((res) => {
                 let hand = res.data.data.sort(() => Math.random() - Math.random()).slice(0, 10)
                 let enemy = res.data.data.sort(() => Math.random() - Math.random()).slice(0, 3)
-                sortIDs(hand)
+                serializeCards(hand);
                 setOnHand(hand);
                 setOnEnemy(enemy);
             });
@@ -30,34 +30,31 @@ const PlayerHand = memo(function Container() {
     }, []);
 
     useEffect(() => {
-        sortIDs(onHand)
         console.log(onHand)
     }, [onHand]);
 
     useEffect(() => {
-        sortIDs(onField)
         console.log(onField)
     }, [onField]);
 
     useEffect(() => {
-        sortIDs(onEnemy)
         console.log(onEnemy)
     }, [onEnemy]);
 
     const handleCardPlayed = (index) => {
         setOnHand(prev => prev.filter((card) => {
-            //console.log(card.id, index)
-            return card.id != index - 1
+            console.log(`${index}`)
+            return card.id != `${index}`
         }))
-        setOnField(prevArray => [...prevArray, onHand.filter(card => card.id == index - 1)[0]])
+        setOnField(prevArray => [...prevArray, onHand.filter(card => card.id == index)[0]])
     }
 
-    const sortIDs = (array) => {
-        var myArray = array
+    const serializeCards = (data) => {
+        var myArray = data
         myArray.forEach(function (element, index) {
-            element.id = (init ? index : index + 1);
+            element.id = `${index}`;
+            console.log(element.id)
         });
-        if (!init) setInit(true)
     }
 
     return (

@@ -9,7 +9,7 @@ export const Hand = (props) => {
             height: '255px'
         }}>
             {props.cards.map((card, index) => (
-                <div className="generated-hand-card" key={card.cardName + index}>
+                <div className="generated-hand-card" key={'hand' + card.cardName + index}>
                     <HandCard
                         id={card.id}
                         cardName={card.cardName}
