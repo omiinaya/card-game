@@ -41,9 +41,7 @@ export const Field = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          height: "100%",
+          justifyContent: "center"
         }}
       >
         <Container cards={ITEMS} />

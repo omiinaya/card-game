@@ -6,8 +6,6 @@ const style = {
     height: '265px',
     width: '175px',
     zIndex: 10,
-    position: 'absolute',
-    color: 'white'
 }
 export const Enemy = (props) => {
     const card = props.card
