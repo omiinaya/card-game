@@ -1,57 +1,69 @@
-import { useDrag } from 'react-dnd';
-import { ItemTypes } from './ItemTypes';
-import CardCard from '../cardCard/CardCard';
+import { memo } from "react";
+import { useDrag, useDrop } from "react-dnd";
+import { ItemTypes } from "./ItemTypes";
+import CardCard from "../cardCard/CardCard";
 
 const style = {
-    //border: '1px dashed gray',
-    cursor: 'move',
-    zIndex: 10
+  //border: "1px dashed gray",
+  //backgroundColor: "white",
+  cursor: "move",
 };
-const FieldCard = function FieldCard({
-    id,
-    cardName,
-    cardImage,
-    cardRarity,
-    cardType,
-    cardSubType,
-    cardDesc,
-    typeImage,
-    cardAtk,
-    cardDef,
-    //playCard
+export const FieldCard = memo(function FieldCard({
+  id,
+  card,
+  moveCard,
+  findCard,
 }) {
-    const [{ isDragging }, drag] = useDrag(() => ({
-        type: ItemTypes.FIELDCARD,
-        item: { id, cardName },
-        end: (item, monitor) => {
-            const dropResult = monitor.getDropResult();
-            if (item && dropResult) {
-                //playCard(item.id)
-                console.log(`You used ${item.cardName} to attack ${dropResult.name}!`);
-            }
-        },
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-            handlerId: monitor.getHandlerId(),
-        }),
-    }));
-    const opacity = isDragging ? 0.4 : 1;
-    return (
-        <div ref={drag} role="FieldCard" style={{ ...style, opacity }} data-testid={`fieldcard-${cardName}`} onClick={() => { console.log(id) }}>
-            <CardCard
-                id={id}
-                cardName={cardName}
-                cardImage={cardImage}
-                cardRarity={cardRarity}
-                cardType={cardType}
-                cardSubType={cardSubType}
-                cardDesc={cardDesc}
-                typeImage={typeImage}
-                cardAtk={cardAtk}
-                cardDef={cardDef}
-            />
-        </div>
-    );
-};
-
-export default FieldCard
+  const originalIndex = findCard(id).index;
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: ItemTypes.FIELDCARD,
+      item: { id, originalIndex },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+      end: (item, monitor) => {
+        const { id: droppedId, originalIndex } = item;
+        const didDrop = monitor.didDrop();
+        const dropResult = monitor.getDropResult();
+        if (item && dropResult) {
+          //playCard(item.id)
+          console.log(`You used ${card.cardName} to attack ${dropResult.name}!`);
+        }
+        if (!didDrop) {
+          moveCard(droppedId, originalIndex);
+        }
+      },
+    }),
+    [id, originalIndex, moveCard]
+  );
+  const [, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.FIELDCARD,
+      hover({ id: draggedId }) {
+        if (draggedId !== id) {
+          const { index: overIndex } = findCard(id);
+          moveCard(draggedId, overIndex);
+        }
+      },
+    }),
+    [findCard, moveCard]
+  );
+  const opacity = isDragging ? 0 : 1;
+  return (
+    <div ref={(node) => drag(drop(node))} style={{ ...style, opacity }}>
+      <CardCard
+        id={id}
+        cardName={card.cardName}
+        cardImage={card.cardImage}
+        cardRarity={card.cardRarity}
+        cardType={card.cardType}
+        cardSubType={card.cardSubType}
+        cardDesc={card.cardDesc}
+        typeImage={card.typeImage}
+        cardATK={card.cardATK}
+        cardDEF={card.cardDEF}
+      />
+    </div>
+  );
+});

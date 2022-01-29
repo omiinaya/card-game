@@ -1,6 +1,6 @@
 import { memo, useCallback, useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
-import { Card } from "./Card";
+import { FieldCard } from "./FieldCard";
 import update from "immutability-helper";
 import { ItemTypes } from "./ItemTypes";
 
@@ -47,7 +47,7 @@ const Container = memo(function Container(props) {
   return (
     <div ref={drop} style={style}>
       {cards.map((card) => (
-        <Card
+        <FieldCard
           key={card.id}
           id={`${card.id}`}
           card={card}

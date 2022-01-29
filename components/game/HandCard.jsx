@@ -10,25 +10,17 @@ const style = {
 };
 export const HandCard = function HandCard({
     id,
-    cardName,
-    cardImage,
-    cardRarity,
-    cardType,
-    cardSubType,
-    cardDesc,
-    typeImage,
-    cardAtk,
-    cardDef,
+    card,
     playCard
 }) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.HANDCARD,
-        item: { id, cardName },
+        item: { id, card },
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
                 playCard(item.id)
-                console.log(`You dropped ${item.cardName} into ${dropResult.name}!`);
+                console.log(`You dropped ${item.card.cardName} into ${dropResult.name}!`);
             }
         },
         collect: (monitor) => ({
@@ -42,21 +34,21 @@ export const HandCard = function HandCard({
             ref={drag}
             role="HandCard"
             style={{ ...style, opacity }}
-            data-testid={`handcard-${cardName}`}
+            data-testid={`handcard-${card.cardName}`}
             onClick={() => {
                 console.log(id)
             }}>
             <CardCard
                 id={id}
-                cardName={cardName}
-                cardImage={cardImage}
-                cardRarity={cardRarity}
-                cardType={cardType}
-                cardSubType={cardSubType}
-                cardDesc={cardDesc}
-                typeImage={typeImage}
-                cardAtk={cardAtk}
-                cardDef={cardDef}
+                cardName={card.cardName}
+                cardImage={card.cardImage}
+                cardRarity={card.cardRarity}
+                cardType={card.cardType}
+                cardSubType={card.cardSubType}
+                cardDesc={card.cardDesc}
+                typeImage={card.typeImage}
+                cardATK={card.cardATK}
+                cardDEF={card.cardDEF}
             />
         </div>
     );

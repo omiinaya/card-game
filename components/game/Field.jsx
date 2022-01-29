@@ -5,6 +5,7 @@ import Container from "./Container";
 const style = {
   height: "250px",
   width: "100%",
+  border: '1px dotted black'
 };
 export const Field = (props) => {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -17,7 +18,7 @@ export const Field = (props) => {
   }));
 
   const isActive = canDrop && isOver;
-  let backgroundColor = "#222";
+  let backgroundColor = "white";
 
   if (isActive) {
     backgroundColor = "darkgreen";

@@ -170,7 +170,7 @@ export const Text = ({ children, rich }) => {
         width="520"
         height="230"
         fontSize="50px"
-        textAlign="center"
+        
         color="black"
       >
         <div

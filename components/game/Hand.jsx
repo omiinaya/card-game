@@ -12,15 +12,7 @@ export const Hand = (props) => {
                 <div className="generated-hand-card" key={'hand' + card.cardName + index}>
                     <HandCard
                         id={card.id}
-                        cardName={card.cardName}
-                        cardImage={card.cardImage}
-                        cardRarity={card.cardRarity}
-                        cardType={card.cardType}
-                        typeImage={card.typeImage}
-                        cardDesc={card.cardDesc}
-                        cardSubType={card.cardSubType}
-                        cardAtk={card.cardATK}
-                        cardDef={card.cardDEF}
+                        card={card}
                         playCard={props.playCard}
                     />
                 </div>

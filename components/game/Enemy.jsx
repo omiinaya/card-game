@@ -21,7 +21,7 @@ export const Enemy = (props) => {
     }));
 
     const isActive = canDrop && isOver;
-    let backgroundColor = '#222';
+    let backgroundColor = 'white';
 
     if (isActive) {
         backgroundColor = 'darkgreen';
@@ -42,8 +42,8 @@ export const Enemy = (props) => {
                 typeImage={card.typeImage}
                 cardDesc={card.cardDesc}
                 cardSubType={card.cardSubType}
-                cardAtk={card.cardATK}
-                cardDef={card.cardDEF}
+                cardATK={card.cardATK}
+                cardDEF={card.cardDEF}
                 playCard={props.playCard}
             />
         </div>
