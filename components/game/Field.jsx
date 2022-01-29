@@ -4,8 +4,7 @@ import Container from "./Container";
 
 const style = {
   height: "250px",
-  width: "100%",
-  border: '1px dotted black'
+  border: "1px dotted black",
 };
 export const Field = (props) => {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -34,18 +33,11 @@ export const Field = (props) => {
     return myArray;
   };
 
-  let ITEMS = sortIDs(props.cards)
+  let ITEMS = sortIDs(props.cards);
 
   return (
     <div ref={drop} role={"Field"} style={{ ...style, backgroundColor }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        <Container cards={ITEMS} />
-      </div>
+      <Container cards={ITEMS} />
     </div>
   );
 };
