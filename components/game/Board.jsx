@@ -42,17 +42,14 @@ const PlayerHand = memo(function Container() {
     }, [onEnemy]);
 
     const handleCardPlayed = (index) => {
-        setOnHand(prev => prev.filter((card) => {
-            console.log(`${index}`)
-            return card.id != `${index}`
-        }))
+        setOnHand(prev => prev.filter((card) => card.id != index))
         setOnField(prevArray => [...prevArray, onHand.filter(card => card.id == index)[0]])
     }
 
     const serializeCards = (data) => {
         var myArray = data
         myArray.forEach(function (element, index) {
-            element.id = `${index}`;
+            element.id = index;
             console.log(element.id)
         });
     }
