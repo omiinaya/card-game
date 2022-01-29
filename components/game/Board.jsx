@@ -1,9 +1,9 @@
 import EField from "./EField";
 import Field from "./Field";
+import NewField from "./NewField";
 import Hand from "./Hand";
 import axios from "axios";
 import { useEffect, useState } from "react";
-//import Container from "./Container";
 
 const PlayerHand = () => {
   const [onHand, setOnHand] = useState([]);
@@ -32,15 +32,15 @@ const PlayerHand = () => {
   }, []);
 
   useEffect(() => {
-    console.log(onHand);
+    //console.log(onHand);
   }, [onHand]);
 
   useEffect(() => {
-    console.log(onField);
+    //console.log(onField);
   }, [onField]);
 
   useEffect(() => {
-    console.log(onEnemy);
+    //console.log(onEnemy);
   }, [onEnemy]);
 
   const handleCardPlayed = (index) => {
@@ -55,7 +55,7 @@ const PlayerHand = () => {
     var myArray = data;
     myArray.forEach(function(element, index) {
       element.id = index;
-      console.log(element.id);
+      //console.log(element.id);
     });
   };
 
@@ -66,7 +66,7 @@ const PlayerHand = () => {
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Field cards={onField} />
-        {/*<Container /> */}
+       {/* <NewField cards={onField} />*/}
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Hand cards={onHand} playCard={handleCardPlayed} />

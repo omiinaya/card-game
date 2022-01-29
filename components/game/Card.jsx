@@ -8,11 +8,17 @@ const style = {
   backgroundColor: "white",
   cursor: "move",
 };
-export const Card = memo(function Card({ id, text, moveCard, findCard }) {
+export const Card = memo(function Card({
+  id,
+  cardName,
+  moveCard,
+  findCard,
+}) {
+  console.log(cardName);
   const originalIndex = findCard(id).index;
   const [{ isDragging }, drag] = useDrag(
     () => ({
-      type: ItemTypes.CARD,
+      type: ItemTypes.FIELDCARD,
       item: { id, originalIndex },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
@@ -29,7 +35,7 @@ export const Card = memo(function Card({ id, text, moveCard, findCard }) {
   );
   const [, drop] = useDrop(
     () => ({
-      accept: ItemTypes.CARD,
+      accept: ItemTypes.FIELDCARD,
       hover({ id: draggedId }) {
         if (draggedId !== id) {
           const { index: overIndex } = findCard(id);
@@ -42,7 +48,7 @@ export const Card = memo(function Card({ id, text, moveCard, findCard }) {
   const opacity = isDragging ? 0 : 1;
   return (
     <div ref={(node) => drag(drop(node))} style={{ ...style, opacity }}>
-      {text}
+      {cardName}
     </div>
   );
 });
