@@ -24,7 +24,7 @@ const handler = nextConnect()
       limit: 1,
     });
 
-    console.log(user)
+    //console.log(user)
     /* Check if exists */
     if (!user) {
       return res.status(400).json({
@@ -39,8 +39,8 @@ const handler = nextConnect()
       userPassword = dataUser.password;
     /* Check and compare password */
     bcrypt.compare(password, userPassword).then(isMatch => {
-      console.log(password)
-      console.log(userPassword)
+      //console.log(password)
+      //console.log(userPassword)
       if (isMatch) {
         /* User matched */
         /* Create JWT Payload */

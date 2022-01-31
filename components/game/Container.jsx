@@ -15,7 +15,7 @@ const Container = memo(function Container(props) {
   const [cards, setCards] = useState(props.cards);
 
   useEffect(() => {
-    console.log(props.cards);
+    //console.log(props.cards);
     setCards(props.cards);
   }, [props.cards]);
 

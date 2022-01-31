@@ -43,12 +43,12 @@ export default function BasicSelect() {
   }, []);
 
   useEffect(() => {
-    console.log(data)
+    //console.log(data)
   }, [data]);
 
   useEffect(() => {
-    console.log(rarities);
-    console.log(types);
+    //console.log(rarities);
+    //console.log(types);
   }, [rarities, types]);
 
   const handleChangeName = (event) => {
@@ -110,7 +110,7 @@ export default function BasicSelect() {
     });
     let result = await loginApi.json();
     if (result.success) {
-      console.log(result)
+      //console.log(result)
       //Router.push('/');
     }
   }

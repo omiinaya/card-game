@@ -28,7 +28,7 @@ export default function Album() {
     }, []);
 
     useEffect(() => {
-        console.log(cards)
+        //console.log(cards)
     }, [cards]);
 
     return (

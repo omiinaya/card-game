@@ -13,7 +13,7 @@ export const Field = (props) => {
     drop: () => ({ name: "Field" }),
     //enabling and disabling drop ability.
     canDrop: (item, monitor) => {
-      console.log(item, monitor)
+      //console.log(item, monitor)
       return true
     },
     //
