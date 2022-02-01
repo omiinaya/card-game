@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { useDrag } from "react-dnd";
 import { COLUMN } from "./constants";
 import DropZone from "./DropZone";
-import Component from "./Component";
 
 const style = {};
 const Column = ({ data, components, handleDrop, path }) => {
@@ -24,13 +23,11 @@ const Column = ({ data, components, handleDrop, path }) => {
   drag(ref);
 
   const renderComponent = (component, currentPath) => {
+    //console.log(component)
     return (
-      <Component
-        key={component.id}
-        data={component}
-        components={components}
-        path={currentPath}
-      />
+      <div style={{ width: '100px' }}>
+        {component.id}
+      </div>
     );
   };
 
@@ -40,7 +37,6 @@ const Column = ({ data, components, handleDrop, path }) => {
       style={{ ...style, opacity }}
       className="base draggable column"
     >
-      {data.id}
       {data.children.map((component, index) => {
         const currentPath = `${path}-${index}`;
 

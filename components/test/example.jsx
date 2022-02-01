@@ -1,6 +1,4 @@
 import React, { useState, useCallback } from "react";
-
-import DropZone from "./DropZone";
 import SideBarItem from "./SideBarItem";
 import Row from "./Row";
 import initialData from "./initial-data";
@@ -8,7 +6,6 @@ import {
   handleMoveWithinParent,
   handleMoveToDifferentParent,
   handleMoveSidebarComponentIntoParent,
-  handleRemoveItemFromLayout
 } from "./helpers";
 
 import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COMPONENT, COLUMN } from "./constants";
@@ -17,14 +14,6 @@ import shortid from "shortid";
 const Container = () => {
   const [layout, setLayout] = useState(initialData.layout);
   const [components, setComponents] = useState(initialData.components);
-
-  const handleDropToTrashBin = useCallback(
-    (dropZone, item) => {
-      const splitItemPath = item.path.split("-");
-      setLayout(handleRemoveItemFromLayout(layout, splitItemPath));
-    },
-    [layout]
-  );
 
   const handleDrop = useCallback(
     (dropZone, item) => {

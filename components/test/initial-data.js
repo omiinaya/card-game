@@ -12,7 +12,7 @@ const initialData = {
           children: [
             {
               type: COMPONENT,
-              id: "component0"
+              id: "component0",
             }
           ]
         }
