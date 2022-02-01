@@ -12,11 +12,11 @@ const Column = ({ data, components, handleDrop, path }) => {
     item: {
       id: data.id,
       children: data.children,
-      path
+      path,
     },
     collect: (monitor) => ({
-      isDragging: monitor.isDragging()
-    })
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   const opacity = isDragging ? 0 : 1;
@@ -24,12 +24,10 @@ const Column = ({ data, components, handleDrop, path }) => {
 
   const renderComponent = (component, currentPath) => {
     //console.log(component)
-    return (
-      <div style={{ width: '100px' }}>
-        {component.id}
-      </div>
-    );
+    return <div style={{ width: "100px" }}>{component.id}</div>;
   };
+
+  const currentPath = `${path}-${data.length}`;
 
   return (
     <div
@@ -37,26 +35,20 @@ const Column = ({ data, components, handleDrop, path }) => {
       style={{ ...style, opacity }}
       className="base draggable column"
     >
-      {data.children.map((component, index) => {
-        const currentPath = `${path}-${index}`;
-
-        return (
-          <React.Fragment key={component.id}>
-            <DropZone
-              data={{
-                path: currentPath,
-                childrenCount: data.children.length
-              }}
-              onDrop={handleDrop}
-            />
-            {renderComponent(component, currentPath)}
-          </React.Fragment>
-        );
-      })}
+      <React.Fragment key={data.id}>
+        <DropZone
+          data={{
+            path: `${path}-${data.length}`,
+            childrenCount: data.length,
+          }}
+          onDrop={handleDrop}
+        />
+        {renderComponent(data, currentPath)}
+      </React.Fragment>
       <DropZone
         data={{
-          path: `${path}-${data.children.length}`,
-          childrenCount: data.children.length
+          path: currentPath,
+          childrenCount: data.length,
         }}
         onDrop={handleDrop}
         isLast

@@ -11,7 +11,7 @@ import {
 import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COMPONENT, COLUMN } from "./constants";
 import shortid from "shortid";
 
-const Container = () => {
+const Container = (props) => {
   const [layout, setLayout] = useState(initialData.layout);
   const [components, setComponents] = useState(initialData.components);
 
@@ -98,6 +98,7 @@ const Container = () => {
       <Row
         key={row.id}
         data={row}
+        cards={props.cards}
         handleDrop={handleDrop}
         components={components}
         path={currentPath}

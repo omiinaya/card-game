@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EField from "./EField";
 import Field from "./Field";
-import Test from "./Test";
+import Example from "../test/example";
 import Hand from "./Hand";
 
 const PlayerHand = () => {
@@ -71,7 +71,7 @@ const PlayerHand = () => {
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         {/*<Field cards={onField} />*/}
-        <Test cards={onTest} />
+        <Example  cards={onTest} />
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Hand cards={onHand} playCard={handleCardPlayed} />

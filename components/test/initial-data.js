@@ -8,13 +8,7 @@ const initialData = {
       children: [
         {
           type: COLUMN,
-          id: "column1",
-          children: [
-            {
-              type: COMPONENT,
-              id: "component0",
-            }
-          ]
+          id: "column1"
         }
       ]
     },

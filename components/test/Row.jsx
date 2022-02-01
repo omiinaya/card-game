@@ -5,7 +5,8 @@ import DropZone from "./DropZone";
 import Column from "./Column";
 
 const style = {};
-const Row = ({ data, components, handleDrop, path }) => {
+const Row = ({ data, cards, components, handleDrop, path }) => {
+  console.log(cards)
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -34,10 +35,12 @@ const Row = ({ data, components, handleDrop, path }) => {
       />
     );
   };
-
+  console.log(data.children)
+  
   return (
     <div ref={ref} style={{ ...style, opacity }} className="base draggable row">
       <div className="columns">
+        
         {data.children.map((column, index) => {
           const currentPath = `${path}-${index}`;
           //console.log(data)
