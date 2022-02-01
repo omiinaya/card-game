@@ -62,6 +62,14 @@ body {
   display: none;
 }
 
+.dropZone.horizontalDrag:last-of-type {
+  width: 100%;
+}
+
+.dropZone.horizontalDrag:first-of-type {
+  width: 100%;
+}
+
 .dropZone.horizontalDrag {
   width: 30px;
   height: auto;
