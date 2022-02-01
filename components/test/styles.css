@@ -1,27 +1,3 @@
-$card-scale: 0.63;
-
-.cards {
-  display: flex;
-  justify-content: center;
-}
-
-.generated-efield-card {
-  width: 175px;
-}
-
-.generated-field-card {
-  width: 175px;
-}
-
-.generated-hand-card {
-  transform: scale($card-scale);
-  transform-origin: top left;
-  padding-left: 57px;
-  margin-left: -70px;
-  padding-left: -100px;
-  width: 175px;
-}
-
 html,
 body {
   margin: 0;
@@ -82,7 +58,6 @@ body {
 .trashDropZone.active {
   background: #00a2ff;
   transition: 100ms all;
-  width: 130px;
 }
 
 
@@ -94,20 +69,17 @@ body {
 
 .column {
   border: 1px solid blue;
+  flex: 1 1 100%;
   padding: 10px;
 }
 
 .columns {
   display: flex;
   padding: 20px 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .columnContainer {
   display: flex;
-  
 }
 
 .base {
