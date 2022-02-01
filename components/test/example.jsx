@@ -121,25 +121,17 @@ const Container = () => {
   return (
     <div className="body">
       <div className="pageContainer">
-        <div className="page">
+        
           {layout.map((row, index) => {
             const currentPath = `${index}`;
 
             return (
               <React.Fragment key={row.id}>
-                <DropZone
-                  data={{
-                    path: currentPath,
-                    childrenCount: layout.length
-                  }}
-                  onDrop={handleDrop}
-                  path={currentPath}
-                />
                 {renderRow(row, currentPath)}
               </React.Fragment>
             );
           })}
-        </div>
+      
 
         <div className="sideBar">
         {Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
