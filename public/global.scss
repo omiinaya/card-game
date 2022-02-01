@@ -55,11 +55,14 @@ body {
 .dropZone {
   flex: 0 0 auto;
   height: 40px;
-  transition: 200ms all;
 }
 
 .dropZone:nth-of-type(2n) {
   display: none;
+}
+
+.dropZone.horizontalDrag.active {
+  width: 130px;
 }
 
 .dropZone.horizontalDrag:last-of-type {
@@ -83,7 +86,6 @@ body {
 .trashDropZone.active {
   background: #00a2ff;
   transition: 100ms all;
-  
 }
 
 .column {
