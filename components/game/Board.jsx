@@ -76,9 +76,6 @@ const PlayerHand = () => {
         {/*<Field cards={onField} />*/}
         <Example  onTest={onTest} onHand={onHand} playCard={handleCardPlayed}/>
       </div>
-      <div style={{ overflow: "hidden", clear: "both" }}>
-        <Hand cards={onHand} playCard={handleCardPlayed} />
-      </div>
     </div>
   );
 };

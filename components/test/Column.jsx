@@ -2,11 +2,12 @@ import React, { useRef } from "react";
 import { useDrag } from "react-dnd";
 import DropZone from "./DropZone";
 import { ItemTypes } from "./ItemTypes";
+import CardCard from "../cardCard/CardCard";
 
 const style = {};
 const Column = ({ data, handleDrop, path }) => {
-  console.log(data)
-  
+  console.log(data);
+
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -24,9 +25,23 @@ const Column = ({ data, handleDrop, path }) => {
   const opacity = isDragging ? 0 : 1;
   drag(ref);
 
-  const renderComponent = (component, currentPath) => {
-    console.log(component.children[0].cardName)
-    return <div style={{ width: "100px" }}>{component.children[0].cardName}</div>;
+  const renderComponent = (card) => {
+    return (
+      <div style={{ width: "150px" }}>
+        <CardCard
+          id={card.id}
+          cardName={card.cardName}
+          cardImage={card.cardImage}
+          cardRarity={card.cardRarity}
+          cardType={card.cardType}
+          cardSubType={card.cardSubType}
+          cardDesc={card.cardDesc}
+          typeImage={card.typeImage}
+          cardATK={card.cardATK}
+          cardDEF={card.cardDEF}
+        />
+      </div>
+    );
   };
 
   const currentPath = `${path}-${data.length}`;
@@ -45,7 +60,7 @@ const Column = ({ data, handleDrop, path }) => {
           }}
           onDrop={handleDrop}
         />
-        {renderComponent(data, currentPath)}
+        {renderComponent(data.children[0], currentPath)}
       </React.Fragment>
       <DropZone
         data={{

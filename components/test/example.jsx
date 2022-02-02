@@ -19,7 +19,7 @@ const Container = (props) => {
       {
         type: ItemTypes.ROW,
         id: "row0",
-        children: []
+        children: [],
       },
     ],
   };
@@ -30,7 +30,9 @@ const Container = (props) => {
     (dropZone, item) => {
       console.log("dropZone", dropZone);
       console.log("item", item);
-      playCard(item.id)
+
+      //removes card from hand when dropped into field.
+      playCard(item.id);
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
@@ -38,6 +40,13 @@ const Container = (props) => {
       const newItem = {
         id: item.id,
         cardName: item.cardName,
+        cardImage: item.cardImage,
+        cardRarity: item.cardRarity,
+        cardType: item.cardType,
+        cardSubType: item.cardSubType,
+        cardDesc: item.cardDesc,
+        cardATK: item.cardATK,
+        cardDEF: item.cardDEF,
       };
       if (item.type === ItemTypes.COLUMN) {
         newItem = item;
@@ -68,17 +77,6 @@ const Container = (props) => {
           );
           return;
         }
-
-        // 2.b. OR move different parent
-        // TODO FIX columns. item includes children
-        setLayout(
-          handleMoveToDifferentParent(
-            layout,
-            splitDropZonePath,
-            splitItemPath,
-            newItem
-          )
-        );
         return;
       }
 
