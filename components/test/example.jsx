@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import SideBarItem from "./SideBarItem";
 import Row from "./Row";
-import initialData from "./initial-data";
 import {
   handleMoveWithinParent,
   handleMoveToDifferentParent,
@@ -13,6 +12,17 @@ import { ItemTypes } from "./ItemTypes";
 const Container = (props) => {
   const onHand = props.onHand;
   const onTest = props.onTest;
+  const playCard = props.playCard;
+
+  const initialData = {
+    layout: [
+      {
+        type: ItemTypes.ROW,
+        id: "row0",
+        children: []
+      },
+    ],
+  };
 
   const [layout, setLayout] = useState(initialData.layout);
 
@@ -20,6 +30,7 @@ const Container = (props) => {
     (dropZone, item) => {
       console.log("dropZone", dropZone);
       console.log("item", item);
+      playCard(item.id)
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");

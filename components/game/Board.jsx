@@ -51,10 +51,12 @@ const PlayerHand = () => {
 
   const handleCardPlayed = (index) => {
     setOnHand((prev) => prev.filter((card) => card.id != index));
+    /*
     setOnField((prevArray) => [
       ...prevArray,
       onHand.filter((card) => card.id == index)[0],
     ]);
+    */
   };
 
   const serializeCards = (data) => {
@@ -72,7 +74,7 @@ const PlayerHand = () => {
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         {/*<Field cards={onField} />*/}
-        <Example  onTest={onTest} onHand={onHand} />
+        <Example  onTest={onTest} onHand={onHand} playCard={handleCardPlayed}/>
       </div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         <Hand cards={onHand} playCard={handleCardPlayed} />
