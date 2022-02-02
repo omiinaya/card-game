@@ -9,28 +9,6 @@ body {
   flex-direction: row;
 }
 
-.sideBar {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding-left: 70px;
-}
-
-.sideBar {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  z-index: 5;
-}
-
-.sideBarItem {
-  //border: 1px solid #000;
-  height: 205px;
-  width: 150px;
-  margin-left: -70px;
-  z-index: 10;
-}
-
 .dropZone {
   flex: 0 0 auto;
 }
@@ -111,6 +89,22 @@ body {
   width: 150px;
 }
 
+.sideBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-left: 70px;
+  z-index: 5;
+}
+
+.sideBarItem {
+  //border: 1px solid #000;
+  height: 205px;
+  width: 150px;
+  margin-left: -75px;
+  z-index: 10;
+}
+
 $total: 10;
 @for $i from 0 through ($total - 1) {
   $hue: calc(($i / $total)) * -360;
@@ -154,12 +148,12 @@ $total: 10;
 }
 
 .sideBarFace {
-  &:active {
+  &:hover {
     .sideBarItem {
       border: 1px solid black;
     }
   }
-  &:not(:active) .sideBarItem {
+  &:not(:hover) .sideBarItem {
     border: 1px solid red;
   }
 }

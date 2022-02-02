@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDrag } from "react-dnd";
 import DropZone from "./DropZone";
 import { ItemTypes } from "./ItemTypes";
@@ -8,6 +8,23 @@ const style = {};
 const PlayerCard = ({ data, handleDrop, path }) => {
   const card = data.children[0]
   const ref = useRef(null);
+  const [target, setTarget] = useState('')
+  const [targetHealth, setTargetHealth] = useState(0)
+
+  useEffect(() => {
+    console.log(`${card.cardName} atk: ${card.cardATK}`)
+    fight(card.cardATK, target.health)
+  }, [target]);
+
+  useEffect(() => {
+    console.log(`damage inflicted: ${targetHealth}`)
+  }, [targetHealth]);
+
+  function fight(damage, health) {
+    if (damage && health) {
+      setTargetHealth(prev => prev = health - damage)
+    }
+  }
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.COLUMN,
@@ -20,9 +37,9 @@ const PlayerCard = ({ data, handleDrop, path }) => {
       isDragging: monitor.isDragging(),
     }),
     end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      if (item && dropResult) {
-        console.log(`You placed ${card.cardName} on the ${dropResult.name}!`);
+      const target = monitor.getDropResult();
+      if (target && target.name != 'Field') {
+        setTarget(prev => prev = target)
       }
     },
   });

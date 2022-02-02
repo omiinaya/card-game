@@ -9,12 +9,14 @@ import {
 } from "./helpers";
 
 import { ItemTypes } from "./ItemTypes";
+//import styles from './animations'
 
 const Board = (props) => {
   const onHand = props.onHand;
   const onEnemy = props.onEnemy;
   const onTest = props.onTest;
   const playCard = props.playCard;
+  //const classes = styles();
 
   const initialData = {
     layout: [
@@ -30,8 +32,8 @@ const Board = (props) => {
 
   const handleDrop = useCallback(
     (dropZone, item) => {
-      console.log("dropZone", dropZone);
-      console.log("item", item);
+      //console.log("dropZone", dropZone);
+      //console.log("item", item);
 
       //removes card from hand when dropped into field.
       playCard(item.id);
@@ -123,24 +125,24 @@ const Board = (props) => {
         </div>
         {layout.map((row, index) => {
           const currentPath = `${index}`;
-
+          //const classes = styles();
           return (
             <React.Fragment key={row.id}>
               {renderRow(row, currentPath)}
             </React.Fragment>
           );
         })}
-
         <div className="sideBar">
-          {Object.values(onHand).map((card) => (
-            <div className="sideBarFace">
-              <PlayerHand
-                key={card.id}
-                data={card}
-                onHand={onHand}
-              />
-            </div>
-          ))}
+          {Object.values(onHand).map((card) => {
+            return (
+              <div key={card.id} className={"sideBarFace"}>
+                <PlayerHand
+                  data={card}
+                  onHand={onHand}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

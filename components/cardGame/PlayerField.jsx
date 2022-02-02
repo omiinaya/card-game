@@ -1,9 +1,20 @@
 import React from "react";
+import { useDrop } from "react-dnd";
 import DropZone from "./DropZone";
 import PlayerCard from "./PlayerCard";
+import { ItemTypes } from "./ItemTypes";
 
-const Row = ({ data, cards, handleDrop, path }) => {
-  console.log(cards)
+const Row = ({ data, handleDrop, path }) => {
+  const [, drop] = useDrop(() => ({
+    accept: ItemTypes.SIDEBAR_ITEM,
+    drop: () => ({
+      name: 'Field',
+    }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  }));
 
   const renderColumn = (column, currentPath) => {
     return (
@@ -15,13 +26,17 @@ const Row = ({ data, cards, handleDrop, path }) => {
       />
     );
   };
-  console.log(data.children)
+
   return (
-    <div className="base draggable row">
+    <div
+      className="base draggable row"
+      ref={drop}
+      role={"Field"}
+    >
       <div className="columns">
         {data.children.map((column, index) => {
           const currentPath = `${path}-${index}`;
-  
+
           return (
             <React.Fragment key={column.id}>
               <DropZone
@@ -36,7 +51,7 @@ const Row = ({ data, cards, handleDrop, path }) => {
             </React.Fragment>
           );
         })}
-      
+
         <DropZone
           data={{
             path: `${path}-${data.children.length}`,
@@ -44,7 +59,7 @@ const Row = ({ data, cards, handleDrop, path }) => {
           }}
           onDrop={handleDrop}
           className="horizontalDrag"
-          //isLast
+        //isLast
         />
       </div>
     </div>

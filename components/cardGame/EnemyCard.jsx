@@ -6,7 +6,12 @@ export const EnemyCard = (props) => {
   const card = props.data;
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.COLUMN,
-    drop: () => ({ name: card.cardName }),
+    drop: () => ({
+      id: card.id,
+      name: card.cardName,
+      health: card.cardDEF,
+      attack: card.cardATK
+    }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
