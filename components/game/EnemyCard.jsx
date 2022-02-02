@@ -2,7 +2,7 @@ import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import CardCard from "../cardCard/CardCard";
 
-export const Enemy = (props) => {
+export const EnemyCard = (props) => {
   const card = props.data;
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.COLUMN,
@@ -46,4 +46,4 @@ export const Enemy = (props) => {
   );
 };
 
-export default Enemy;
+export default EnemyCard;

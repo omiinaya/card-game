@@ -1,13 +1,13 @@
 import React from "react";
 import DropZone from "./DropZone";
-import Column from "./Column";
+import PlayerCard from "./PlayerCard";
 
 const Row = ({ data, cards, handleDrop, path }) => {
   console.log(cards)
 
   const renderColumn = (column, currentPath) => {
     return (
-      <Column
+      <PlayerCard
         key={column.id}
         data={column}
         handleDrop={handleDrop}

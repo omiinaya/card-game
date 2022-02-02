@@ -1,4 +1,4 @@
-import Board from "../game/Board";
+import Game from "../game/Game";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
@@ -11,7 +11,7 @@ export default function Home(props) {
     <div className="container">
       <main>    
         <DndProvider backend={deviceType === "desktop" ? HTML5Backend : TouchBackend}>
-          {<Board />}
+          {<Game />}
         </DndProvider>
         {user && (
           <div>

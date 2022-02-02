@@ -3,7 +3,7 @@ import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import CardCard from "../cardCard/CardCard";
 
-const SideBarItem = ({ data }) => {
+const PlayerHand = ({ data }) => {
   //console.log(data)
   const [{ opacity }, drag] = useDrag({
     type: ItemTypes.SIDEBAR_ITEM,
@@ -37,4 +37,4 @@ const SideBarItem = ({ data }) => {
     </div>
   );
 };
-export default SideBarItem;
+export default PlayerHand;

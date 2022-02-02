@@ -5,7 +5,7 @@ import { ItemTypes } from "./ItemTypes";
 import CardCard from "../cardCard/CardCard";
 
 const style = {};
-const Column = ({ data, handleDrop, path }) => {
+const PlayerCard = ({ data, handleDrop, path }) => {
   const card = data.children[0]
   const ref = useRef(null);
 
@@ -32,7 +32,7 @@ const Column = ({ data, handleDrop, path }) => {
 
   const renderComponent = (card) => {
     return (
-      <div style={{ width: "150px" }}>
+      <div className="card">
         <CardCard
           id={card.id}
           cardName={card.cardName}
@@ -78,4 +78,4 @@ const Column = ({ data, handleDrop, path }) => {
     </div>
   );
 };
-export default Column;
+export default PlayerCard;
