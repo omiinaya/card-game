@@ -113,10 +113,10 @@ const Board = (props) => {
     <div className="body">
       <div className="pageContainer">
         <div className="sideBar">
-          {Object.values(onEnemy).map((sideBarItem) => (
+          {Object.values(onEnemy).map((card) => (
             <EnemyCard
-              key={sideBarItem.id}
-              data={sideBarItem}
+              key={card.id}
+              data={card}
               onHand={onEnemy}
             />
           ))}
@@ -132,11 +132,11 @@ const Board = (props) => {
         })}
 
         <div className="sideBar">
-          {Object.values(onHand).map((sideBarItem) => (
+          {Object.values(onHand).map((card) => (
             <div className="sideBarFace">
               <PlayerHand
-                key={sideBarItem.id}
-                data={sideBarItem}
+                key={card.id}
+                data={card}
                 onHand={onHand}
               />
             </div>

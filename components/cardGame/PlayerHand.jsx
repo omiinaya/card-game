@@ -11,8 +11,9 @@ const PlayerHand = ({ data }) => {
     collect: (monitor) => {
       //cancelmouseevents on sidebar
       return {
+        //hide magnified card while dragging
         opacity: monitor.isDragging() ? 0 : 1,
-        //display: monitor.isDragging() ? 'none' : 'block',
+        //allows dropping cards into field through hidden magnified card
         pointerEvents: monitor.isDragging() ? "none" : "auto",
       };
     },

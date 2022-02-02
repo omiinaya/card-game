@@ -113,11 +113,11 @@ body {
 
 $total: 10;
 @for $i from 0 through ($total - 1) {
-  $hue: ($i / $total) * -360;
+  $hue: calc(($i / $total)) * -360;
   $rotationRange: 50;
-  $rotation: ($i - ($total - 1) / 2) / ($total - 2) * $rotationRange;
+  $rotation: calc(($i - ($total - 1) / 2) / ($total - 2)) * $rotationRange;
   $offsetRange: 80;
-  $offset: abs(($i - ($total - 1) / 2) / ($total - 2) * $offsetRange);
+  $offset: abs(calc(($i - ($total - 1) / 2) / ($total - 2)) * $offsetRange);
   .sideBarFace:nth-child(#{$i}) {
     .sideBarItem {
       transform: translateY($offset * 1px) rotate($rotation * 1deg);
@@ -129,6 +129,11 @@ $total: 10;
         position: relative;
         margin-right: 70px;
         margin-left: 20px;
+        &:active {
+          transform: rotate(0deg) scale(1) !important;
+          margin-right: -70px !important;
+          margin-left: -20px !important;
+        }
         &:after {
           animation: fade 250ms ease-out forwards;
         }
@@ -147,3 +152,20 @@ $total: 10;
     transform: scale(1.15);
   }
 }
+
+.sideBarFace {
+  &:active {
+    .sideBarItem {
+      border: 1px solid black;
+    }
+  }
+  &:not(:active) .sideBarItem {
+    border: 1px solid red;
+  }
+}
+
+/*
+.sideBarFace:hover ~ .sideBarFace .sideBarItem{
+  border: 1px solid red;
+}
+*/
