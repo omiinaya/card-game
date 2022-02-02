@@ -1,17 +1,7 @@
-import Head from 'next/head';
-import Router from 'next/router';
 import { getAppCookies, verifyToken } from '../middleware/utils';
-import NProgress from 'nprogress';
 import UserNav from '../components/navigation/User';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "../public/global.scss";
-
-NProgress.configure({ showSpinner: false });
-Router.events.on('routeChangeStart', url => {
-  NProgress.start();
-});
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const { user, origin } = pageProps;
