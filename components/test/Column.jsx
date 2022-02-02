@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import { useDrag } from "react-dnd";
-import { COLUMN } from "./constants";
 import DropZone from "./DropZone";
+import { ItemTypes } from "./ItemTypes";
 
 const style = {};
 const Column = ({ data, handleDrop, path }) => {
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
-    type: COLUMN,
+    type: ItemTypes.COLUMN,
     item: {
       id: data.id,
       children: data.children,

@@ -1,9 +1,9 @@
-import { ROW } from "./constants";
+import { ItemTypes } from './ItemTypes'
 
 const initialData = {
   layout: [
     {
-      type: ROW,
+      type: ItemTypes.ROW,
       id: "row0",
       children: [
         

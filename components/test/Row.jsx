@@ -15,7 +15,7 @@ const Row = ({ data, cards, handleDrop, path }) => {
       />
     );
   };
-  
+  console.log(data.children)
   return (
     <div className="base draggable row">
       <div className="columns">

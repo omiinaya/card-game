@@ -1,5 +1,5 @@
 import shortid from "shortid";
-import { ROW, COLUMN, COMPONENT } from "./constants";
+import { ItemTypes } from './ItemTypes'
 
 // a little function to help us with reordering the result
 export const reorder = (list, startIndex, endIndex) => {
@@ -113,7 +113,7 @@ export const handleMoveWithinParent = (
 export const handleAddColumDataToRow = layout => {
   const layoutCopy = [...layout];
   const COLUMN_STRUCTURE = {
-    type: COLUMN,
+    type: ItemTypes.COLUMN,
     id: shortid.generate(),
     children: []
   };
@@ -134,20 +134,20 @@ export const handleMoveToDifferentParent = (
 ) => {
   let newLayoutStructure;
   const COLUMN_STRUCTURE = {
-    type: COLUMN,
+    type: ItemTypes.COLUMN,
     id: shortid.generate(),
     children: [item]
   };
 
   const ROW_STRUCTURE = {
-    type: ROW,
+    type: ItemTypes.ROW,
     id: shortid.generate()
   };
 
   switch (splitDropZonePath.length) {
     case 1: {
       // moving column outside into new row made on the fly
-      if (item.type === COLUMN) {
+      if (item.type === ItemTypes.COLUMN) {
         newLayoutStructure = {
           ...ROW_STRUCTURE,
           children: [item]
@@ -163,7 +163,7 @@ export const handleMoveToDifferentParent = (
     }
     case 2: {
       // moving component outside into a row which creates column
-      if (item.type === COMPONENT) {
+      if (item.type === ItemTypes.COMPONENT) {
         newLayoutStructure = COLUMN_STRUCTURE;
       } else {
         // moving column into existing row
@@ -198,15 +198,15 @@ export const handleMoveSidebarComponentIntoParent = (
   switch (splitDropZonePath.length) {
     case 1: {
       newLayoutStructure = {
-        type: ROW,
+        type: ItemTypes.ROW,
         id: shortid.generate(),
-        children: [{ type: COLUMN, id: shortid.generate(), children: [item] }]
+        children: [{ type: ItemTypes.COLUMN, id: shortid.generate(), children: [item] }]
       };
       break;
     }
     case 2: {
       newLayoutStructure = {
-        type: COLUMN,
+        type: ItemTypes.COLUMN,
         id: shortid.generate(),
         children: [item]
       };

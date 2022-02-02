@@ -8,9 +8,13 @@ import {
   handleMoveSidebarComponentIntoParent,
 } from "./helpers";
 
-import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COLUMN } from "./constants";
+import { ItemTypes } from './ItemTypes';
+import { SIDEBAR_ITEMS } from "./constants";
 
 const Container = (props) => {
+  const onHand = props.onHand
+  const onTest = props.onTest
+
   const [layout, setLayout] = useState(initialData.layout);
 
   const handleDrop = useCallback(
@@ -22,12 +26,12 @@ const Container = (props) => {
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
 
       const newItem = { id: item.id };
-      if (item.type === COLUMN) {
+      if (item.type === ItemTypes.COLUMN) {
         newItem = item;
       }
 
       // sidebar into
-      if (item.type === SIDEBAR_ITEM) {
+      if (item.type === ItemTypes.SIDEBAR_ITEM) {
         setLayout(
           handleMoveSidebarComponentIntoParent(
             layout,
@@ -83,7 +87,7 @@ const Container = (props) => {
       <Row
         key={row.id}
         data={row}
-        cards={props.onTest}
+        cards={onTest}
         handleDrop={handleDrop}
         path={currentPath}
       />
@@ -109,7 +113,7 @@ const Container = (props) => {
 
         <div className="sideBar">
         {Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
-          <SideBarItem key={sideBarItem.id} data={sideBarItem} />
+          <SideBarItem key={sideBarItem.id} data={sideBarItem} onHand={onHand}/>
         ))}
       </div>
       </div>
