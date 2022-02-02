@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
-import CardCard from '../cardCard/CardCard';
+import CardTemplate from '../cardTemplate/CardTemplate';
 import CardCreate from '../cardCreate/CardCreate'
 import axios from 'axios';
 
@@ -81,7 +81,7 @@ export default function Album() {
                                         display: 'flex',
                                         flexDirection: 'column'
                                     }}>
-                                    <CardCard
+                                    <CardTemplate
                                         cardName={cards[index].cardName}
                                         cardImage={cards[index].cardImage}
                                         cardRarity={cards[index].cardRarity}
