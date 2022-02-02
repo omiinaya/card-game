@@ -4,7 +4,7 @@ import EField from "./EField";
 import Field from "./Field";
 import Example from "../test/example";
 import Hand from "./Hand";
-import { ItemTypes } from './ItemTypes';
+import { ItemTypes } from "./ItemTypes";
 
 const PlayerHand = () => {
   const [onHand, setOnHand] = useState([]);
@@ -61,21 +61,21 @@ const PlayerHand = () => {
 
   const serializeCards = (data) => {
     var myArray = data;
-    myArray.forEach(function (element, index) {
+    myArray.forEach(function(element, index) {
       element.id = index;
       element.type = ItemTypes.SIDEBAR_ITEM;
     });
   };
 
   return (
-    <div>
-      <div style={{ overflow: "hidden", clear: "both" }}>
-        <EField cards={onEnemy} />
-      </div>
-      <div style={{ overflow: "hidden", clear: "both" }}>
-        {/*<Field cards={onField} />*/}
-        <Example  onTest={onTest} onHand={onHand} playCard={handleCardPlayed}/>
-      </div>
+    <div style={{ overflow: "hidden", clear: "both" }}>
+      {/*<Field cards={onField} />*/}
+      <Example
+        onEnemy={onEnemy}
+        onHand={onHand}
+        onTest={onTest}
+        playCard={handleCardPlayed}
+      />
     </div>
   );
 };

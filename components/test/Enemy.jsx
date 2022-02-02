@@ -2,6 +2,11 @@ import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import CardCard from '../cardCard/CardCard';
 
+const style = {
+    height: '205px',
+    width: '150px',
+    zIndex: 10,
+}
 export const Enemy = (props) => {
     const card = props.card
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -25,7 +30,7 @@ export const Enemy = (props) => {
     }
 
     return (
-        <div ref={drop} role={'Enemy'} style={{ backgroundColor }}>
+        <div ref={drop} role={'Enemy'} style={{ ...style, backgroundColor }}>
             <CardCard
                 id={card.id}
                 cardName={card.cardName}

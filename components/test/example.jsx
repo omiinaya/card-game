@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import SideBarItem from "./SideBarItem";
+import EnemyField from "./EnemyField";
 import Row from "./Row";
 import {
   handleMoveWithinParent,
@@ -11,6 +12,7 @@ import { ItemTypes } from "./ItemTypes";
 
 const Container = (props) => {
   const onHand = props.onHand;
+  const onEnemy = props.onEnemy;
   const onTest = props.onTest;
   const playCard = props.playCard;
 
@@ -110,6 +112,15 @@ const Container = (props) => {
   return (
     <div className="body">
       <div className="pageContainer">
+      <div className="sideBar">
+          {Object.values(onEnemy).map((sideBarItem) => (
+            <EnemyField
+              key={sideBarItem.id}
+              data={sideBarItem}
+              onHand={onEnemy}
+            />
+          ))}
+        </div>
         {layout.map((row, index) => {
           const currentPath = `${index}`;
 
@@ -121,7 +132,7 @@ const Container = (props) => {
         })}
 
         <div className="sideBar">
-          {Object.values(onHand).map((sideBarItem, index) => (
+          {Object.values(onHand).map((sideBarItem) => (
             <SideBarItem
               key={sideBarItem.id}
               data={sideBarItem}
