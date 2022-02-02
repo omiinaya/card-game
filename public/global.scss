@@ -13,12 +13,22 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
+  padding-left: 70px;
+}
+
+.sideBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 5;
 }
 
 .sideBarItem {
-  border: 1px solid #000;
+  //border: 1px solid #000;
   height: 205px;
   width: 150px;
+  margin-left: -70px;
+  z-index: 10;
 }
 
 .dropZone {
@@ -99,4 +109,41 @@ body {
 
 .card {
   width: 150px;
+}
+
+$total: 10;
+@for $i from 0 through ($total - 1) {
+  $hue: ($i / $total) * -360;
+  $rotationRange: 50;
+  $rotation: ($i - ($total - 1) / 2) / ($total - 2) * $rotationRange;
+  $offsetRange: 80;
+  $offset: abs(($i - ($total - 1) / 2) / ($total - 2) * $offsetRange);
+  .sideBarFace:nth-child(#{$i}) {
+    .sideBarItem {
+      transform: translateY($offset * 1px) rotate($rotation * 1deg);
+    }
+    &:hover {
+      .sideBarItem {
+        transform: translateY(-50px) rotate(0deg) scale(1.7);
+        transition-duration: 0ms;
+        position: relative;
+        margin-right: 70px;
+        margin-left: 20px;
+        &:after {
+          animation: fade 250ms ease-out forwards;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
 }

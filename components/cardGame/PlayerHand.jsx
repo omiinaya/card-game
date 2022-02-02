@@ -5,12 +5,17 @@ import CardTemplate from "../cardTemplate/CardTemplate";
 
 const PlayerHand = ({ data }) => {
   //console.log(data)
-  const [{ opacity }, drag] = useDrag({
+  const [{ opacity, display, pointerEvents }, drag] = useDrag({
     type: ItemTypes.SIDEBAR_ITEM,
     item: data,
-    collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.4 : 1,
-    }),
+    collect: (monitor) => {
+      //cancelmouseevents on sidebar
+      return {
+        opacity: monitor.isDragging() ? 0 : 1,
+        //display: monitor.isDragging() ? 'none' : 'block',
+        pointerEvents: monitor.isDragging() ? "none" : "auto",
+      };
+    },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
@@ -21,7 +26,7 @@ const PlayerHand = ({ data }) => {
   });
 
   return (
-    <div className="sideBarItem" ref={drag} style={{ opacity }}>
+    <div className="sideBarItem" ref={drag} style={{ opacity, pointerEvents }}>
       <CardTemplate
         id={data.id}
         cardName={data.cardName}
