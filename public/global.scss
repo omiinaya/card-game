@@ -42,6 +42,7 @@ body {
 .sideBarItem {
   border: 1px solid #000;
   height: 205px;
+  width: 150px;
 }
 
 .dropZone {
@@ -108,8 +109,14 @@ body {
 }
 
 .enemy {
-  border: 1px solid lightblue;
+  border: 1px solid #00a2ff;
   height: 205px;
   width: 150px;
   z-index: 10;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }

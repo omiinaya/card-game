@@ -6,7 +6,7 @@ import CardCard from "../cardCard/CardCard";
 
 const style = {};
 const Column = ({ data, handleDrop, path }) => {
-
+  const card = data.children[0]
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -19,6 +19,12 @@ const Column = ({ data, handleDrop, path }) => {
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult();
+      if (item && dropResult) {
+        console.log(`You placed ${card.cardName} on the ${dropResult.name}!`);
+      }
+    },
   });
 
   const opacity = isDragging ? 0 : 1;

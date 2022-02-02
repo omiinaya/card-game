@@ -10,6 +10,7 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
     accept: ACCEPTS,
     drop: (item, monitor) => {
       onDrop(data, item);
+      return ({ name: 'Field' })
     },
     canDrop: (item, monitor) => {
       const dropZonePath = data.path;

@@ -23,22 +23,25 @@ export const Enemy = (props) => {
   }
 
   return (
-    <div ref={drop} role={"Enemy"} className="enemy" style={{ backgroundColor }} >
-      <div className="enemy">
-        <CardCard
-          id={card.id}
-          cardName={card.cardName}
-          cardImage={card.cardImage}
-          cardRarity={card.cardRarity}
-          cardType={card.cardType}
-          typeImage={card.typeImage}
-          cardDesc={card.cardDesc}
-          cardSubType={card.cardSubType}
-          cardATK={card.cardATK}
-          cardDEF={card.cardDEF}
-          playCard={props.playCard}
-        />
-      </div>
+    <div
+      ref={drop}
+      role={"Enemy"}
+      className="enemy"
+      style={{ backgroundColor }}
+    >
+      <CardCard
+        id={card.id}
+        cardName={card.cardName}
+        cardImage={card.cardImage}
+        cardRarity={card.cardRarity}
+        cardType={card.cardType}
+        typeImage={card.typeImage}
+        cardDesc={card.cardDesc}
+        cardSubType={card.cardSubType}
+        cardATK={card.cardATK}
+        cardDEF={card.cardDEF}
+        playCard={props.playCard}
+      />
     </div>
   );
 };
