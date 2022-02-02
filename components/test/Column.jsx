@@ -5,6 +5,8 @@ import { ItemTypes } from "./ItemTypes";
 
 const style = {};
 const Column = ({ data, handleDrop, path }) => {
+  console.log(data)
+  
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -23,8 +25,8 @@ const Column = ({ data, handleDrop, path }) => {
   drag(ref);
 
   const renderComponent = (component, currentPath) => {
-    //console.log(component)
-    return <div style={{ width: "100px" }}>{component.id}</div>;
+    console.log(component.children[0].cardName)
+    return <div style={{ width: "100px" }}>{component.children[0].cardName}</div>;
   };
 
   const currentPath = `${path}-${data.length}`;

@@ -4,6 +4,7 @@ import EField from "./EField";
 import Field from "./Field";
 import Example from "../test/example";
 import Hand from "./Hand";
+import { ItemTypes } from './ItemTypes';
 
 const PlayerHand = () => {
   const [onHand, setOnHand] = useState([]);
@@ -60,7 +61,7 @@ const PlayerHand = () => {
     var myArray = data;
     myArray.forEach(function (element, index) {
       element.id = index;
-      //console.log(element.id);
+      element.type = ItemTypes.SIDEBAR_ITEM;
     });
   };
 

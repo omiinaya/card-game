@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import { useDrop } from "react-dnd";
-import { COMPONENT, SIDEBAR_ITEM, ROW, COLUMN } from "./constants";
 import { ItemTypes } from './ItemTypes';
 
 const ACCEPTS = [ItemTypes.SIDEBAR_ITEM, ItemTypes.COLUMN];

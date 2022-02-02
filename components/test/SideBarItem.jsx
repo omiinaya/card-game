@@ -2,9 +2,8 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes"
 
-const SideBarItem = ({ data, onHand }) => {
+const SideBarItem = ({ data }) => {
   //console.log(data)
-  console.log(onHand)
   const [{ opacity }, drag] = useDrag({
     type: ItemTypes.SIDEBAR_ITEM,
     item: data,
@@ -15,7 +14,7 @@ const SideBarItem = ({ data, onHand }) => {
   
   return (
     <div className="sideBarItem" ref={drag} style={{ opacity }}>
-      {data.content}
+      {data.cardName}
     </div>
   );
 };

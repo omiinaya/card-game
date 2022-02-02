@@ -8,24 +8,26 @@ import {
   handleMoveSidebarComponentIntoParent,
 } from "./helpers";
 
-import { ItemTypes } from './ItemTypes';
-import { SIDEBAR_ITEMS } from "./constants";
+import { ItemTypes } from "./ItemTypes";
 
 const Container = (props) => {
-  const onHand = props.onHand
-  const onTest = props.onTest
+  const onHand = props.onHand;
+  const onTest = props.onTest;
 
   const [layout, setLayout] = useState(initialData.layout);
 
   const handleDrop = useCallback(
     (dropZone, item) => {
-      console.log('dropZone', dropZone)
-      console.log('item', item)
+      console.log("dropZone", dropZone);
+      console.log("item", item);
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
 
-      const newItem = { id: item.id };
+      const newItem = {
+        id: item.id,
+        cardName: item.cardName,
+      };
       if (item.type === ItemTypes.COLUMN) {
         newItem = item;
       }
@@ -99,23 +101,25 @@ const Container = (props) => {
   return (
     <div className="body">
       <div className="pageContainer">
-        
-          {layout.map((row, index) => {
-            const currentPath = `${index}`;
+        {layout.map((row, index) => {
+          const currentPath = `${index}`;
 
-            return (
-              <React.Fragment key={row.id}>
-                {renderRow(row, currentPath)}
-              </React.Fragment>
-            );
-          })}
-      
+          return (
+            <React.Fragment key={row.id}>
+              {renderRow(row, currentPath)}
+            </React.Fragment>
+          );
+        })}
 
         <div className="sideBar">
-        {Object.values(SIDEBAR_ITEMS).map((sideBarItem, index) => (
-          <SideBarItem key={sideBarItem.id} data={sideBarItem} onHand={onHand}/>
-        ))}
-      </div>
+          {Object.values(onHand).map((sideBarItem, index) => (
+            <SideBarItem
+              key={sideBarItem.id}
+              data={sideBarItem}
+              onHand={onHand}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
