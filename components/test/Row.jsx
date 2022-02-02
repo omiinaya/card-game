@@ -19,7 +19,6 @@ const Row = ({ data, cards, handleDrop, path }) => {
   return (
     <div className="base draggable row">
       <div className="columns">
-        
         {data.children.map((column, index) => {
           const currentPath = `${path}-${index}`;
   

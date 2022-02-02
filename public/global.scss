@@ -37,15 +37,11 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
-  
-  border-right: 1px solid #111;
 }
 
 .sideBarItem {
   border: 1px solid #000;
-  border-radius: 3px;
   height: 205px;
-  background: #ccc;
 }
 
 .dropZone {
@@ -109,4 +105,11 @@ body {
   flex: 1;
   flex-direction: column;
   margin-bottom: 100px;
+}
+
+.enemy {
+  border: 1px solid lightblue;
+  height: 205px;
+  width: 150px;
+  z-index: 10;
 }

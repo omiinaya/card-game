@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import SideBarItem from "./SideBarItem";
-import EnemyField from "./EnemyField";
+import Enemy from "./Enemy";
 import Row from "./Row";
 import {
   handleMoveWithinParent,
@@ -114,7 +114,7 @@ const Container = (props) => {
       <div className="pageContainer">
       <div className="sideBar">
           {Object.values(onEnemy).map((sideBarItem) => (
-            <EnemyField
+            <Enemy
               key={sideBarItem.id}
               data={sideBarItem}
               onHand={onEnemy}

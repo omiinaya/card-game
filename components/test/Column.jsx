@@ -6,7 +6,6 @@ import CardCard from "../cardCard/CardCard";
 
 const style = {};
 const Column = ({ data, handleDrop, path }) => {
-  console.log(data);
 
   const ref = useRef(null);
 

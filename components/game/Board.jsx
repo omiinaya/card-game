@@ -1,14 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import EField from "./EField";
-import Field from "./Field";
 import Example from "../test/example";
-import Hand from "./Hand";
 import { ItemTypes } from "./ItemTypes";
 
 const PlayerHand = () => {
   const [onHand, setOnHand] = useState([]);
-  const [onField, setOnField] = useState([]);
   const [onEnemy, setOnEnemy] = useState([]);
   const [onTest, setOnTest] = useState([]);
 
@@ -18,7 +14,7 @@ const PlayerHand = () => {
       axios.get(`/api/card`).then((res) => {
         let hand = res.data.data
           .sort(() => Math.random() - Math.random())
-          .slice(0, 10);
+          .slice(0, 9);
         let enemy = res.data.data
           .sort(() => Math.random() - Math.random())
           .slice(0, 3);
@@ -40,10 +36,6 @@ const PlayerHand = () => {
   useEffect(() => {
     //console.log(onHand);
   }, [onHand]);
-
-  useEffect(() => {
-    //console.log(onField);
-  }, [onField]);
 
   useEffect(() => {
     //console.log(onEnemy);
@@ -69,7 +61,6 @@ const PlayerHand = () => {
 
   return (
     <div style={{ overflow: "hidden", clear: "both" }}>
-      {/*<Field cards={onField} />*/}
       <Example
         onEnemy={onEnemy}
         onHand={onHand}

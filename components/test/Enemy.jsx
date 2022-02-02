@@ -1,51 +1,46 @@
-import { useDrop } from 'react-dnd';
-import { ItemTypes } from './ItemTypes';
-import CardCard from '../cardCard/CardCard';
+import { useDrop } from "react-dnd";
+import { ItemTypes } from "./ItemTypes";
+import CardCard from "../cardCard/CardCard";
 
-const style = {
-    height: '205px',
-    width: '150px',
-    zIndex: 10,
-}
 export const Enemy = (props) => {
-    const card = props.card
-    const [{ canDrop, isOver }, drop] = useDrop(() => ({
-        accept: ItemTypes.COLUMN,
-        drop: () => ({ name: card.cardName }),
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            canDrop: monitor.canDrop(),
-        }),
-    }));
+  const card = props.data;
+  const [{ canDrop, isOver }, drop] = useDrop(() => ({
+    accept: ItemTypes.COLUMN,
+    drop: () => ({ name: card.cardName }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  }));
 
-    const isActive = canDrop && isOver;
-    let backgroundColor = 'white';
+  const isActive = canDrop && isOver;
+  let backgroundColor = "white";
 
-    if (isActive) {
-        backgroundColor = 'darkgreen';
-    }
+  if (isActive) {
+    backgroundColor = "darkgreen";
+  } else if (canDrop) {
+    backgroundColor = "darkkhaki";
+  }
 
-    else if (canDrop) {
-        backgroundColor = 'darkkhaki';
-    }
+  return (
+    <div ref={drop} role={"Enemy"} className="enemy" style={{ backgroundColor }} >
+      <div className="enemy">
+        <CardCard
+          id={card.id}
+          cardName={card.cardName}
+          cardImage={card.cardImage}
+          cardRarity={card.cardRarity}
+          cardType={card.cardType}
+          typeImage={card.typeImage}
+          cardDesc={card.cardDesc}
+          cardSubType={card.cardSubType}
+          cardATK={card.cardATK}
+          cardDEF={card.cardDEF}
+          playCard={props.playCard}
+        />
+      </div>
+    </div>
+  );
+};
 
-    return (
-        <div ref={drop} role={'Enemy'} style={{ ...style, backgroundColor }}>
-            <CardCard
-                id={card.id}
-                cardName={card.cardName}
-                cardImage={card.cardImage}
-                cardRarity={card.cardRarity}
-                cardType={card.cardType}
-                typeImage={card.typeImage}
-                cardDesc={card.cardDesc}
-                cardSubType={card.cardSubType}
-                cardATK={card.cardATK}
-                cardDEF={card.cardDEF}
-                playCard={props.playCard}
-            />
-        </div>
-    );
-}
-
-export default Enemy
+export default Enemy;

@@ -3,6 +3,7 @@ import { ItemTypes } from './ItemTypes';
 import CardCard from '../cardCard/CardCard';
 
 export const Enemy = (props) => {
+    console.log(props)
     const card = props.card
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: ItemTypes.COLUMN,
