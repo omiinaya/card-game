@@ -18,13 +18,9 @@ const Game = () => {
         let enemy = res.data.data
           .sort(() => Math.random() - Math.random())
           .slice(0, 3);
-        let test = res.data.data
-          .sort(() => Math.random() - Math.random())
-          .slice(0, 5);
         serializeCards(hand);
         setOnHand(hand);
         setOnEnemy(enemy);
-        setOnTest(test);
       });
     }
   };
@@ -41,13 +37,19 @@ const Game = () => {
     //console.log(onEnemy);
   }, [onEnemy]);
 
-  const handleCardPlayed = (index) => {
+  const handleCardPlay = (index) => {
     setOnHand((prev) => prev.filter((card) => card.id != index));
+  };
+
+  const handleCardAttack = (sent, sentBy, received, receivedBy) => {
+    if (sent && sentBy && received && receivedBy) {
+      console.log(`${sentBy} attacked ${receivedBy} and inflicted ${sent} damage, leaving it with ${received-sent} health`)
+    }
   };
 
   const serializeCards = (data) => {
     var myArray = data;
-    myArray.forEach(function(element, index) {
+    myArray.forEach(function (element, index) {
       element.id = index;
       element.type = ItemTypes.SIDEBAR_ITEM;
     });
@@ -58,8 +60,8 @@ const Game = () => {
       <Board
         onEnemy={onEnemy}
         onHand={onHand}
-        onTest={onTest}
-        playCard={handleCardPlayed}
+        playCard={handleCardPlay}
+        attackCard={handleCardAttack}
       />
     </div>
   );

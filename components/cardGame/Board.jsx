@@ -14,8 +14,8 @@ import { ItemTypes } from "./ItemTypes";
 const Board = (props) => {
   const onHand = props.onHand;
   const onEnemy = props.onEnemy;
-  const onTest = props.onTest;
   const playCard = props.playCard;
+  const attackCard = props.attackCard;
   //const classes = styles();
 
   const initialData = {
@@ -102,7 +102,7 @@ const Board = (props) => {
       <Row
         key={row.id}
         data={row}
-        cards={onTest}
+        attackCard={attackCard}
         handleDrop={handleDrop}
         path={currentPath}
       />
@@ -114,7 +114,7 @@ const Board = (props) => {
   return (
     <div className="body">
       <div className="pageContainer">
-        <div className="sideBar">
+        <div className="enemyBar">
           {Object.values(onEnemy).map((card) => (
             <EnemyCard
               key={card.id}

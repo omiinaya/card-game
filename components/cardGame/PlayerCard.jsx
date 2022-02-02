@@ -5,26 +5,14 @@ import { ItemTypes } from "./ItemTypes";
 import CardTemplate from "../cardTemplate/CardTemplate";
 
 const style = {};
-const PlayerCard = ({ data, handleDrop, path }) => {
+const PlayerCard = ({ data, attackCard, handleDrop, path }) => {
   const card = data.children[0]
   const ref = useRef(null);
   const [target, setTarget] = useState('')
-  const [targetHealth, setTargetHealth] = useState(0)
 
   useEffect(() => {
-    console.log(`${card.cardName} atk: ${card.cardATK}`)
-    fight(card.cardATK, target.health)
+    attackCard(card.cardATK, card.cardName, target.health, target.name)
   }, [target]);
-
-  useEffect(() => {
-    console.log(`damage inflicted: ${targetHealth}`)
-  }, [targetHealth]);
-
-  function fight(damage, health) {
-    if (damage && health) {
-      setTargetHealth(prev => prev = health - damage)
-    }
-  }
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.COLUMN,
