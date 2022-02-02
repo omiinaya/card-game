@@ -1,28 +1,9 @@
-import React, { useRef } from "react";
-import { useDrag } from "react-dnd";
-import { ROW } from "./constants";
+import React from "react";
 import DropZone from "./DropZone";
 import Column from "./Column";
 
-const style = {};
 const Row = ({ data, cards, handleDrop, path }) => {
   console.log(cards)
-  const ref = useRef(null);
-
-  const [{ isDragging }, drag] = useDrag({
-    type: ROW,
-    item: {
-      id: data.id,
-      children: data.children,
-      path
-    },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  });
-
-  const opacity = isDragging ? 0 : 1;
-  drag(ref);
 
   const renderColumn = (column, currentPath) => {
     return (
@@ -34,15 +15,14 @@ const Row = ({ data, cards, handleDrop, path }) => {
       />
     );
   };
-  //console.log(data.children)
   
   return (
-    <div ref={ref} style={{ ...style, opacity }} className="base draggable row">
+    <div className="base draggable row">
       <div className="columns">
         
         {data.children.map((column, index) => {
           const currentPath = `${path}-${index}`;
-          //console.log(data)
+  
           return (
             <React.Fragment key={column.id}>
               <DropZone

@@ -4,7 +4,7 @@ import { COLUMN } from "./constants";
 import DropZone from "./DropZone";
 
 const style = {};
-const Column = ({ data, components, handleDrop, path }) => {
+const Column = ({ data, handleDrop, path }) => {
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({

@@ -10,7 +10,7 @@ const style = {
 export const Enemy = (props) => {
     const card = props.card
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
-        accept: ItemTypes.FIELDCARD,
+        accept: ItemTypes.COLUMN,
         drop: () => ({ name: card.cardName }),
         collect: (monitor) => ({
             isOver: monitor.isOver(),

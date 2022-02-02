@@ -1,4 +1,4 @@
-import { COMPONENT, ROW, COLUMN } from "./constants";
+import { ROW } from "./constants";
 
 const initialData = {
   layout: [
