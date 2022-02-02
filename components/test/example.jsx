@@ -8,12 +8,10 @@ import {
   handleMoveSidebarComponentIntoParent,
 } from "./helpers";
 
-import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COMPONENT, COLUMN } from "./constants";
-import shortid from "shortid";
+import { SIDEBAR_ITEMS, SIDEBAR_ITEM, COLUMN } from "./constants";
 
 const Container = (props) => {
   const [layout, setLayout] = useState(initialData.layout);
-  const [components, setComponents] = useState(initialData.components);
 
   const handleDrop = useCallback(
     (dropZone, item) => {
@@ -23,26 +21,13 @@ const Container = (props) => {
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
 
-      const newItem = { id: item.id, type: item.type };
+      const newItem = { id: item.id };
       if (item.type === COLUMN) {
-        newItem.children = item.children;
+        newItem = item;
       }
 
       // sidebar into
       if (item.type === SIDEBAR_ITEM) {
-        // 1. Move sidebar item into page
-        const newComponent = {
-          id: shortid.generate(),
-          ...item.component
-        };
-        const newItem = {
-          id: newComponent.id,
-          type: COMPONENT
-        };
-        setComponents({
-          ...components,
-          [newComponent.id]: newComponent
-        });
         setLayout(
           handleMoveSidebarComponentIntoParent(
             layout,
@@ -90,7 +75,7 @@ const Container = (props) => {
         )
       );
     },
-    [layout, components]
+    [layout]
   );
 
   const renderRow = (row, currentPath) => {
@@ -98,9 +83,8 @@ const Container = (props) => {
       <Row
         key={row.id}
         data={row}
-        cards={props.cards}
+        cards={props.onTest}
         handleDrop={handleDrop}
-        components={components}
         path={currentPath}
       />
     );

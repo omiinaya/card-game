@@ -5,7 +5,7 @@ import DropZone from "./DropZone";
 import Column from "./Column";
 
 const style = {};
-const Row = ({ data, cards, components, handleDrop, path }) => {
+const Row = ({ data, cards, handleDrop, path }) => {
   console.log(cards)
   const ref = useRef(null);
 
@@ -29,13 +29,12 @@ const Row = ({ data, cards, components, handleDrop, path }) => {
       <Column
         key={column.id}
         data={column}
-        components={components}
         handleDrop={handleDrop}
         path={currentPath}
       />
     );
   };
-  console.log(data.children)
+  //console.log(data.children)
   
   return (
     <div ref={ref} style={{ ...style, opacity }} className="base draggable row">
@@ -58,6 +57,7 @@ const Row = ({ data, cards, components, handleDrop, path }) => {
             </React.Fragment>
           );
         })}
+      
         <DropZone
           data={{
             path: `${path}-${data.children.length}`,
@@ -65,7 +65,7 @@ const Row = ({ data, cards, components, handleDrop, path }) => {
           }}
           onDrop={handleDrop}
           className="horizontalDrag"
-          isLast
+          //isLast
         />
       </div>
     </div>

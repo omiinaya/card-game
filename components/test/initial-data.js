@@ -6,10 +6,7 @@ const initialData = {
       type: ROW,
       id: "row0",
       children: [
-        {
-          type: COLUMN,
-          id: "column1"
-        }
+        
       ]
     },
   ],
