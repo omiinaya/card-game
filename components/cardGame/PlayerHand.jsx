@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
-import CardCard from "../cardCard/CardCard";
+import CardTemplate from "../cardTemplate/CardTemplate";
 
 const PlayerHand = ({ data }) => {
   //console.log(data)
@@ -22,7 +22,7 @@ const PlayerHand = ({ data }) => {
 
   return (
     <div className="sideBarItem" ref={drag} style={{ opacity }}>
-      <CardCard
+      <CardTemplate
         id={data.id}
         cardName={data.cardName}
         cardImage={data.cardImage}

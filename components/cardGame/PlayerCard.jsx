@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useDrag } from "react-dnd";
 import DropZone from "./DropZone";
 import { ItemTypes } from "./ItemTypes";
-import CardCard from "../cardCard/CardCard";
+import CardTemplate from "../cardTemplate/CardTemplate";
 
 const style = {};
 const PlayerCard = ({ data, handleDrop, path }) => {
@@ -33,7 +33,7 @@ const PlayerCard = ({ data, handleDrop, path }) => {
   const renderComponent = (card) => {
     return (
       <div className="card">
-        <CardCard
+        <CardTemplate
           id={card.id}
           cardName={card.cardName}
           cardImage={card.cardImage}
