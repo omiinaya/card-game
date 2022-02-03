@@ -4,6 +4,18 @@ body {
   padding: 0;
 }
 
+.gameBackground {
+  display: flex;
+  justify-content: center;
+}
+
+.gameContainer {
+  height: 710px;
+  width: 900px;
+  border: 5px solid black;
+  overflow: hidden;
+}
+
 .body {
   display: flex;
   flex-direction: row;
@@ -42,13 +54,14 @@ body {
 
 .column {
   border: 1px solid blue;
+  height: 210px;
 }
 
 .columns {
-  height: 205px;
   width: 100%;
   display: flex;
   justify-content: center;
+  transform: scale(0.8) !important;
 }
 
 .columnContainer {
@@ -67,9 +80,8 @@ body {
 .pageContainer {
   display: flex;
   justify-content: center;
-  flex: 1;
+  flex: auto;
   flex-direction: column;
-  margin-bottom: 100px;
 }
 
 .enemy {
@@ -90,15 +102,18 @@ body {
   justify-content: center;
   width: 100%;
   z-index: 5;
+  transform: scale(0.8) !important;
 }
 
 .enemyHand {
   display: flex;
   justify-content: center;
+  height: 120px !important;
   width: 100%;
   z-index: 5;
-  transform: rotate(177deg);
-  margin-left: -70px
+  transform: rotate(177deg) scale(0.7) !important;
+  margin-left: -25px;
+  pointer-events: none !important;
 }
 
 .card {
@@ -111,6 +126,7 @@ body {
   width: 100%;
   padding-left: 70px;
   z-index: 5;
+  transform: scale(0.8) !important;
 }
 
 .sideBarItem {

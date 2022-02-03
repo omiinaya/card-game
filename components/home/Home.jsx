@@ -5,21 +5,14 @@ import { TouchBackend } from "react-dnd-touch-backend";
 
 export default function Home(props) {
   const { user, origin, deviceType, baseApiUrl } = props.data;
-  //console.log(deviceType);
-  //console.log(baseApiUrl);
+  console.log(user);
   return (
-    <div className="container">
-      <main>    
+    <div className="gameBackground">
+      <div className="gameContainer">
         <DndProvider backend={deviceType === "desktop" ? HTML5Backend : TouchBackend}>
           {<Game />}
         </DndProvider>
-        {user && (
-          <div>
-            {"User ID: "}
-            {user.id}
-          </div>
-        )}
-      </main>
+      </div>
     </div>
   );
 }
