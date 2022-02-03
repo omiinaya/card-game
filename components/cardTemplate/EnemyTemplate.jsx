@@ -15,7 +15,7 @@ import {
 export default function EnemyTemplate(props) {
   console.log(props)
   return (
-    <Card>
+    <Card transX={-140.000000} transY={0}>
       <Frame Name={'cardback'} />
     </Card>
   );

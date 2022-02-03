@@ -3,7 +3,7 @@ import { Parser } from "html-to-react";
 
 const parser = new Parser();
 
-export const Card = ({ children }) => {
+export const Card = ({ children, transX, transY }) => {
   //console.log(children)
   return (
     <svg style={{ width: "100%", height: "100%" }} viewBox="0 0 751 1041">
@@ -23,7 +23,7 @@ export const Card = ({ children }) => {
         <g
           id="Card"
           type="MSLayerGroup"
-          transform="translate(-14.000000, -50.000000)"
+          transform={`translate(${transX}, ${transY})`}
         >
           {children}
         </g>
@@ -38,13 +38,13 @@ export const Card = ({ children }) => {
   )
 }
 
-export const Frame = ({Name}) => {
+export const Frame = ({Name, Height, Width}) => {
   return (
     <image
       id={Name}
       type="MSBitmapLayer"
-      width="764"
-      height="1100"
+      width={Width}
+      height={Height}
       href={`https://omiinaya.sirv.com/Images/card_game/${Name}.png`}
     />
   )
