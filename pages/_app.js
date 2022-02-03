@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <CssBaseline />
-      <UserNav props={{ user: user }} />
+      {/*<UserNav props={{ user: user }} />*/}
       <Component {...pageProps} />
     </>
   );

@@ -10,10 +10,10 @@ body {
 }
 
 .gameContainer {
-  height: 710px;
+  height: 705px;
   width: 900px;
   border: 5px solid black;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .body {
@@ -55,7 +55,7 @@ body {
 .column {
   border: 1px solid blue;
   height: 210px;
-  margin-top: -20px;
+  margin-top: -30px;
 }
 
 .columns {
@@ -77,7 +77,7 @@ body {
 
 .row {
   border: 1px solid red;
-  height: 170px;
+  height: 150px;
 }
 
 .pageContainer {
@@ -106,8 +106,8 @@ body {
   width: 100%;
   z-index: 5;
   transform: scale(0.7) !important;
-  margin-top: -40px;
-  margin-bottom: -20px;
+  margin-top: -30px;
+  margin-bottom: -30px;
 }
 
 .enemyHand {
@@ -118,6 +118,7 @@ body {
   z-index: 5;
   transform: rotate(177deg) scale(0.6) !important;
   margin-left: -25px;
+  margin-bottom: -20px;
   pointer-events: none !important;
 }
 
@@ -132,6 +133,7 @@ body {
   padding-left: 70px;
   z-index: 5;
   transform: scale(0.6) !important;
+  margin-top: -40px;
 }
 
 .sideBarItem {
