@@ -86,7 +86,7 @@ export const Image = ({ id, clip }) => {
   var parsed = id.replaceAll(' ', '').replaceAll("'", "").toLowerCase()
   return (
     <image
-    id="GVG_096"
+    id={id}
     type="MSBitmapLayer"
     x="117"
     y="78"

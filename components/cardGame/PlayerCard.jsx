@@ -11,6 +11,7 @@ const PlayerCard = ({ data, attackCard, handleDrop, path }) => {
   const [target, setTarget] = useState('')
 
   useEffect(() => {
+    //executes handleCardAttack from game.jsx
     attackCard(card.cardATK, card.cardName, target.health, target.name)
   }, [target]);
 

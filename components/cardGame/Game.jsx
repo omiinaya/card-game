@@ -6,7 +6,7 @@ import { ItemTypes } from "./ItemTypes";
 const Game = () => {
   const [onHand, setOnHand] = useState([]);
   const [onEnemy, setOnEnemy] = useState([]);
-  const [onTest, setOnTest] = useState([]);
+  const [onEHand, setEHand] = useState([]);
 
   const getCards = () => {
     //if onHand have not loaded yet then load them from server.
@@ -18,9 +18,13 @@ const Game = () => {
         let enemy = res.data.data
           .sort(() => Math.random() - Math.random())
           .slice(0, 3);
+        let eHand = res.data.data
+          .sort(() => Math.random() - Math.random())
+          .slice(0, 6);
         serializeCards(hand);
         setOnHand(hand);
         setOnEnemy(enemy);
+        setEHand(eHand)
       });
     }
   };
@@ -43,7 +47,7 @@ const Game = () => {
 
   const handleCardAttack = (sent, sentBy, received, receivedBy) => {
     if (sent && sentBy && received && receivedBy) {
-      console.log(`${sentBy} attacked ${receivedBy} and inflicted ${sent} damage, leaving it with ${received-sent} health`)
+      console.log(`${sentBy} attacked ${receivedBy} and inflicted ${sent} damage, leaving it with ${received - sent} health`)
     }
   };
 
