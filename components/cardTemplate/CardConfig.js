@@ -3,55 +3,52 @@ import { Parser } from "html-to-react";
 
 const parser = new Parser();
 
-export const Card = ({ children }) =>
-  <svg style={{ width: "100%", height: "100%" }} viewBox="0 0 751 1041">
-    <defs>
-      <clipPath id="image-clip-path">
-        <ellipse id="card-clip" cx="390.5" cy="356.5" rx="217.5" ry="292.5" />
-      </clipPath>
-    </defs>
-    <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
-      fillRule="evenodd"
-      type="MSPage"
-    >
+export const Card = ({ children }) => {
+  //console.log(children)
+  return (
+    <svg style={{ width: "100%", height: "100%" }} viewBox="0 0 751 1041">
+      <defs>
+        <clipPath id="image-clip-path">
+          <ellipse id="card-clip" cx="390.5" cy="356.5" rx="217.5" ry="292.5" />
+        </clipPath>
+      </defs>
       <g
-        id="Card"
-        type="MSLayerGroup"
-        transform="translate(-14.000000, -59.000000)"
+        id="Page-1"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd"
+        type="MSPage"
       >
-        {/*
-      Rendering order is important.
-      If we don't put Frame first, then it will not let us see the elements that are behind it.
-      Order should always be: Image, Frame, Cost, Race, Health, Strength, Rarity, Title, Set and Text.
-      We can solve this in different ways:
-      * Put them in the correct place. This is what we are doing right now because it's the simplest option.
-      * Use z-index
-      * Reorder children by type
-    */}
-        {children}
+        <g
+          id="Card"
+          type="MSLayerGroup"
+          transform="translate(-14.000000, -50.000000)"
+        >
+          {children}
+        </g>
       </g>
-    </g>
-    <style>{`
+      <style>{`
   @font-face {
     font-family: 'Belwe';
     src: url('/fonts/BelweBoldBT.ttf');
   }
 `}</style>
-  </svg>;
+    </svg>
+  )
+}
 
-export const Frame = () =>
-  <image
-    id="mNeutral"
-    type="MSBitmapLayer"
-    width="764"
-    height="1100"
-    href="https://omiinaya.sirv.com/Images/card_game/mNeutral.png"
-  />;
-
+export const Frame = ({Name}) => {
+  return (
+    <image
+      id={Name}
+      type="MSBitmapLayer"
+      width="764"
+      height="1100"
+      href={`https://omiinaya.sirv.com/Images/card_game/${Name}.png`}
+    />
+  )
+}
 export const Cost = ({ children, fontFamily }) =>
   <g id="Gem" transform="translate(18.000000, 81.000000)">
     <image
@@ -86,15 +83,15 @@ export const Image = ({ id, clip }) => {
   var parsed = id.replaceAll(' ', '').replaceAll("'", "").toLowerCase()
   return (
     <image
-    id={id}
-    type="MSBitmapLayer"
-    x="117"
-    y="78"
-    width="563"
-    height="563"
-    href={`https://omiinaya.sirv.com/Images/card_game/${parsed}.jpg`}
-    clipPath={clip && "url(#image-clip-path)"}
-  />
+      id={id}
+      type="MSBitmapLayer"
+      x="117"
+      y="78"
+      width="563"
+      height="563"
+      href={`https://omiinaya.sirv.com/Images/card_game/${parsed}.jpg`}
+      clipPath={clip && "url(#image-clip-path)"}
+    />
   )
 }
 
@@ -129,12 +126,12 @@ export const Title = ({ children, fontFamily, flow }) =>
       >
         {flow
           ? <textPath
-              className="text"
-              startOffset="50%"
-              xlinkHref="#title-path"
-            >
-              {children}
-            </textPath>
+            className="text"
+            startOffset="50%"
+            xlinkHref="#title-path"
+          >
+            {children}
+          </textPath>
           : children}
       </text>}
   </g>;
@@ -170,7 +167,7 @@ export const Text = ({ children, rich }) => {
         width="520"
         height="230"
         fontSize="50px"
-        
+
         color="black"
       >
         <div
@@ -297,4 +294,4 @@ export const Race = ({ children, fontFamily }) =>
           {children}
         </tspan>
       </text>}
-  </g>;
+  </g>

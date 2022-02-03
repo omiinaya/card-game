@@ -12,7 +12,7 @@ import {
   Race,
 } from "./CardConfig";
 
-export default function CardTemplate(props) {
+export default function PlayerTemplate(props) {
   //console.log(props)
   return (
     <Card>

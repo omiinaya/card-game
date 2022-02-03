@@ -20,7 +20,7 @@ const Game = () => {
           .slice(0, 3);
         let eHand = res.data.data
           .sort(() => Math.random() - Math.random())
-          .slice(0, 6);
+          .slice(0, 9);
         serializeCards(hand);
         setOnHand(hand);
         setOnEnemy(enemy);

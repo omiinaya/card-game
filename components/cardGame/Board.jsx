@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import PlayerHand from "./PlayerHand";
+import EnemyHand from "./EnemyHand";
 import EnemyCard from "./EnemyCard";
 import Row from "./PlayerField";
 import {
@@ -118,7 +119,7 @@ const Board = (props) => {
         <div className="enemyHand">
           {Object.values(onEHand).map((card) => (
             <div key={card.id} className={"sideBarFace"}>
-              <PlayerHand
+              <EnemyHand
                 key={card.id}
                 data={card}
                 onHand={onEHand}

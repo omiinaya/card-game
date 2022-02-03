@@ -1,12 +1,12 @@
 import React from "react";
-import CardTemplate from "../cardTemplate/CardTemplate";
+import EnemyTemplate from "../cardTemplate/EnemyTemplate";
 
-const PlayerHand = ({ data }) => {
+const EnemyHand = ({ data }) => {
   //console.log(data)
 
   return (
     <div className="sideBarItem">
-      <CardTemplate
+      <EnemyTemplate
         id={data.id}
         cardName={data.cardName}
         cardImage={data.cardImage}
@@ -21,4 +21,4 @@ const PlayerHand = ({ data }) => {
     </div>
   );
 };
-export default PlayerHand;
+export default EnemyHand;

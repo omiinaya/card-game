@@ -1,6 +1,6 @@
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
-import CardTemplate from "../cardTemplate/CardTemplate";
+import PlayerTemplate from "../cardTemplate/PlayerTemplate";
 
 export const EnemyCard = (props) => {
   const card = props.data;
@@ -34,7 +34,7 @@ export const EnemyCard = (props) => {
       className="enemy"
       style={{ backgroundColor }}
     >
-      <CardTemplate
+      <PlayerTemplate
         id={card.id}
         cardName={card.cardName}
         cardImage={card.cardImage}
