@@ -62,6 +62,7 @@ const Game = () => {
   return (
     <div style={{ overflow: "hidden", clear: "both" }}>
       <Board
+        onEHand={onEHand}
         onEnemy={onEnemy}
         onHand={onHand}
         playCard={handleCardPlay}
