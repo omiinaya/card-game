@@ -55,13 +55,15 @@ body {
 .column {
   border: 1px solid blue;
   height: 210px;
+  margin-top: -20px;
 }
 
 .columns {
   width: 100%;
   display: flex;
   justify-content: center;
-  transform: scale(0.8) !important;
+  height: inherit;
+  transform: scale(0.7) !important;
 }
 
 .columnContainer {
@@ -75,6 +77,7 @@ body {
 
 .row {
   border: 1px solid red;
+  height: 170px;
 }
 
 .pageContainer {
@@ -102,16 +105,18 @@ body {
   justify-content: center;
   width: 100%;
   z-index: 5;
-  transform: scale(0.8) !important;
+  transform: scale(0.7) !important;
+  margin-top: -40px;
+  margin-bottom: -20px;
 }
 
 .enemyHand {
   display: flex;
   justify-content: center;
-  height: 120px !important;
+  height: 100px !important;
   width: 100%;
   z-index: 5;
-  transform: rotate(177deg) scale(0.7) !important;
+  transform: rotate(177deg) scale(0.6) !important;
   margin-left: -25px;
   pointer-events: none !important;
 }
@@ -126,7 +131,7 @@ body {
   width: 100%;
   padding-left: 70px;
   z-index: 5;
-  transform: scale(0.8) !important;
+  transform: scale(0.6) !important;
 }
 
 .sideBarItem {
