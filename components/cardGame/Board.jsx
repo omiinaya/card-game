@@ -34,7 +34,8 @@ const Board = (props) => {
     let x = layout[0].children
     if (x) {
       x.forEach(y => {
-        console.log(y.children[0].cardName)
+        let z = y.children[0]
+        console.log(z.cardName)
       })
     }
   }, [layout]);
@@ -136,7 +137,6 @@ const Board = (props) => {
             path={0}
           />
         </div>
-        );
         <div className="sideBar">
           {Object.values(onHand).map((card, index) => {
             return (
