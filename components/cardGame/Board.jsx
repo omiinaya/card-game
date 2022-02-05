@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PlayerHand from "./PlayerHand";
 import EnemyHand from "./EnemyHand";
 import EnemyCard from "./EnemyCard";
-import Row from "./PlayerField";
+import PlayerField from "./PlayerField";
 import {
   handleMoveWithinParent,
   handleMoveToDifferentParent,
@@ -20,17 +20,24 @@ const Board = (props) => {
   const attackCard = props.attackCard;
   //const classes = styles();
 
-  const initialData = {
-    layout: [
-      {
-        type: ItemTypes.ROW,
-        id: "row0",
-        children: [],
-      },
-    ],
-  };
+  const init = [
+    {
+      type: ItemTypes.ROW,
+      id: "row0",
+      children: [],
+    },
+  ];
 
-  const [layout, setLayout] = useState(initialData.layout);
+  const [layout, setLayout] = useState(init);
+
+  useEffect(() => {
+    let x = layout[0].children
+    if (x) {
+      x.forEach(y => {
+        console.log(y.children[0].cardName)
+      })
+    }
+  }, [layout]);
 
   const handleDrop = useCallback(
     (dropZone, item) => {
@@ -99,62 +106,47 @@ const Board = (props) => {
     [layout]
   );
 
-  const renderRow = (row, currentPath) => {
-    return (
-      <Row
-        key={row.id}
-        data={row}
-        attackCard={attackCard}
-        handleDrop={handleDrop}
-        path={currentPath}
-      />
-    );
-  };
-
   // dont use index for key when mapping over items
   // causes this issue - https://github.com/react-dnd/react-dnd/issues/342
   return (
     <div className="body">
       <div className="pageContainer">
         <div className="enemyHand">
-          {Object.values(onEHand).map((card) => (
-            <div key={card.id} className={"sideBarFace"}>
-              <EnemyHand
-                key={card.id}
-                data={card}
-                onHand={onEHand}
-              />
+          {Object.values(onEHand).map((card, index) => (
+            <div key={`EnemyHand${card.id}${index}`} className={"sideBarFace"}>
+              <EnemyHand key={card.id} data={card} onHand={onEHand} />
             </div>
           ))}
         </div>
         <div className="enemyField">
-          {Object.values(onEnemy).map((card) => (
+          {Object.values(onEnemy).map((card, index) => (
             <EnemyCard
-              key={card.id}
+              key={`EnemyField${card.id}${index}`}
               data={card}
               onHand={onEnemy}
             />
           ))}
         </div>
-        {layout.map((row, index) => {
-          const currentPath = `${index}`;
-          //const classes = styles();
-          return (
-            <React.Fragment key={row.id}>
-              {renderRow(row, currentPath)}
-            </React.Fragment>
-          );
-        })}
+        <div className="playerField">
+          <PlayerField
+            key={layout[0].id}
+            data={layout[0]}
+            attackCard={attackCard}
+            handleDrop={handleDrop}
+            path={0}
+          />
+        </div>
+        );
         <div className="sideBar">
-          {Object.values(onHand).map((card) => {
+          {Object.values(onHand).map((card, index) => {
             return (
-              <div key={card.id} className={"sideBarFace"}>
-                <PlayerHand
-                  data={card}
-                  onHand={onHand}
-                />
+              <div
+                key={`PlayerHand${card.id}${index}`}
+                className={"sideBarFace"}
+              >
+                <PlayerHand data={card} onHand={onHand} />
               </div>
-            )
+            );
           })}
         </div>
       </div>

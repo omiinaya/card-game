@@ -4,7 +4,7 @@ import DropZone from "./DropZone";
 import PlayerCard from "./PlayerCard";
 import { ItemTypes } from "./ItemTypes";
 
-const Row = ({ data, attackCard, handleDrop, path }) => {
+const PlayerField = ({ data, attackCard, handleDrop, path }) => {
   const [, drop] = useDrop(() => ({
     accept: ItemTypes.SIDEBAR_ITEM,
     drop: () => ({
@@ -66,4 +66,4 @@ const Row = ({ data, attackCard, handleDrop, path }) => {
     </div>
   );
 };
-export default Row;
+export default PlayerField;
