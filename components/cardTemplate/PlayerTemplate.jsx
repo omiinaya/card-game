@@ -15,9 +15,9 @@ import {
 export default function PlayerTemplate(props) {
   //console.log(props)
   return (
-    <Card transX={-14.000000} transY={-50.000000}>
+    <Card>
       <Image id={props.cardName} clip />
-      <Frame Name={"mNeutral"} Width={"764"} HEight={"1100"} />
+      <Frame Name={"mNeutral"} />
       <Cost fontFamily="Belwe">?</Cost>
       <Race fontFamily="Belwe">{props.cardSubType}</Race>
       <Health fontFamily="Belwe">{props.cardDEF}</Health>

@@ -23,7 +23,7 @@ export const Card = ({ children, transX, transY }) => {
         <g
           id="Card"
           type="MSLayerGroup"
-          transform={`translate(${transX}, ${transY})`}
+          transform={`translate(-14.000000, -50.000000)`}
         >
           {children}
         </g>
@@ -38,13 +38,13 @@ export const Card = ({ children, transX, transY }) => {
   )
 }
 
-export const Frame = ({Name, Height, Width}) => {
+export const Frame = ({Name}) => {
   return (
     <image
       id={Name}
       type="MSBitmapLayer"
-      width={Width}
-      height={Height}
+      width={764}
+      height={1100}
       href={`https://omiinaya.sirv.com/Images/card_game/${Name}.png`}
     />
   )

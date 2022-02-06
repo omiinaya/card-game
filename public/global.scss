@@ -21,13 +21,6 @@ body {
   flex-direction: row;
 }
 
-.pageContainer {
-  display: flex;
-  justify-content: center;
-  flex: auto;
-  flex-direction: column;
-}
-
 .dropZone {
   flex: 0 0 auto;
 }
@@ -73,9 +66,7 @@ body {
   transform: scale(0.7) !important;
 }
 
-.columnContainer {
-  display: flex;
-}
+
 
 .base {
   background-color: white;
@@ -85,6 +76,13 @@ body {
 .row {
   border: 1px solid red;
   height: 150px;
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  flex: auto;
+  flex-direction: column;
 }
 
 .enemy {
@@ -116,7 +114,7 @@ body {
   height: 100px !important;
   width: 100%;
   z-index: 5;
-  transform: rotate(177deg) scale(0.6) !important;
+  transform: rotate(180deg) scale(0.6) !important;
   margin-left: -25px;
   margin-bottom: -20px;
   pointer-events: none !important;
@@ -138,7 +136,7 @@ body {
 .sideBarItem {
   //border: 1px solid #000;
   height: 205px;
-  width: 155px;
+  width: 150px;
   margin-left: -50px;
   z-index: 10;
   transition: 800ms cubic-bezier(0.19, 1, 0.22, 1);
@@ -146,7 +144,7 @@ body {
 
 $total: 10;
 @for $i from 0 through ($total - 1) {
-  $hue: calc(($i / $total)) * -360;
+  $hue: calc(($i / $total) * 360);
   $rotationRange: 50;
   $rotation: calc(($i - ($total - 1) / 2) / ($total - 2)) * $rotationRange;
   $offsetRange: 80;
@@ -182,18 +180,3 @@ $total: 10;
     transform: scale(1.15);
   }
 }
-
-.sideBarFace {
-  &:not(:hover) .sideBarItem {
-    border: 1px solid red;
-  }
-  &:hover { .sideBarItem {
-      border: 1px solid black;
-    }
-  }
-}
-/*
-.sideBarFace:hover ~ .sideBarFace .sideBarItem{
-  border: 1px solid red;
-}
-*/

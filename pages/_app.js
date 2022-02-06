@@ -2,6 +2,7 @@ import { getAppCookies, verifyToken } from '../middleware/utils';
 import UserNav from '../components/navigation/User';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "../public/global.scss";
+import 'normalize.css/normalize.css';
 
 function MyApp({ Component, pageProps }) {
   const { user, origin } = pageProps;
